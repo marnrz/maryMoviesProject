@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colorPallet, defaultCss } from "../../../Theme/commonStyle";
+import { colorPallet, defaultCss } from "../../../../Theme/commonStyle";
 
 export const Style = styled.div`
   .header {
@@ -35,25 +35,26 @@ export const Style = styled.div`
         }
       }
       .usersSide {
-        .bellIcon {
-          .icon {
-            width: 30px;
-            height: 30px;
-            color: ${colorPallet.signColor};
-          }
-        }
-        .userBox {
-          padding: 8px 12px;
-          background-color: ${colorPallet.secondaryBackgroundColor};
+        .btnSignUp,
+        .btnSignIn {
+          background-color: ${colorPallet.darkSecondaryBackgroundColor};
+          border-radius: ${defaultCss.secondaryBorderRadius};
+          width: 120px;
+          height: 36px;
           cursor: pointer;
-          border-radius: ${defaultCss.primaryBorderRadius};
-          .text {
-            color: ${colorPallet.textColor};
+          &:hover {
+            background-color: ${colorPallet.primaryColor};
+            .icon {
+              color: ${colorPallet.lightSignColor};
+            }
           }
-          .avatar {
-            width: 40px;
-            height: auto;
-            border-radius: ${defaultCss.fullBorderRadius};
+          p {
+            color: ${colorPallet.darkTextColor};
+            font-size: 1.6rem;
+          }
+          .icon {
+            font-size: 18px;
+            color: ${colorPallet.primaryColor};
           }
         }
       }

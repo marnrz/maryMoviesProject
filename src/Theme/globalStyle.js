@@ -4,7 +4,7 @@ import { colorPallet } from "./commonStyle";
 export const GlobalStyle = createGlobalStyle`
 html {
     font-size: 10px;
-    background:${colorPallet.primaryBackgroundColor};
+    background:${colorPallet.darkPrimaryBackgroundColor};
     overflow-x: hidden;
 }
 body {
@@ -65,9 +65,10 @@ a {
     padding:0 15px;
 }
 .wrapper {
-    width:1000px;
-    padding:0 15px;
-    margin:0 auto;
+    width: 88%;
+    padding: 0 15px;
+    margin: 0 auto;
+    max-width: 1600px;
 }
 .z-2 { 
     z-index:2;
