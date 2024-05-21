@@ -25,11 +25,7 @@ a {
 *, *:after, *:before {
     box-sizing: border-box;
 }
-/* h1, h2, h3, h4, h5, h6{
-    font-family: "PT Sans", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-} */
+
 .relative {
     position:relative;
 }
@@ -216,11 +212,11 @@ a {
     gap:30px;
 }
 /* @media */
-@media (max-width: 1240px) {
+/* @media (max-width: 1240px) {
     .wrapperFull {
       width: 1000px;
       margin: 0 auto;
-    }}
+    }} */
 `;
 
 export default GlobalStyle;

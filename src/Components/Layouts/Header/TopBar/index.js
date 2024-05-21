@@ -9,16 +9,19 @@ import {
   SunOutlined,
 } from "@ant-design/icons";
 import { useState } from "react";
+import Toggle from "../../../../Utils/Toggle/toggle";
 
 export default function TopBar() {
-  const [theme, setTheme] = useState("dark");
-  const changeTheme = (checked) => {
-    setTheme(checked ? "dark" : "light");
-    console.log(`switch to ${checked}`);
-  };
+  const [theme, setTheme] = useState(false);
+  // [setTheme = "light"] = {
+  //   lightTextColor: "#000",
+  //   lightSignColor: "#000",
+  //   lightSecondaryBackgroundColor: "#fff",
+  //   lightPrimaryBackgroundColor: "#0B0B0F",
+  // };
   return (
     <Style>
-      <div className="header">
+      <div className="header" setTheme={theme ? "light" : "dark"}>
         <div className="wrapper">
           <div className="headerWrapper flex justifyBetween alignCenter mt-4 mb-4  relative z-2">
             <div className="logoSide flex alignCenter justifyCenter gap-4">
@@ -29,25 +32,7 @@ export default function TopBar() {
                   alt="logo"
                 />
               </Link>
-              <Switch
-                checked={theme === "dark"}
-                onChange={changeTheme}
-                size="default "
-                handleBg="red"
-                trackHeight="26"
-                trackPadding={15}
-                checkedChildren={
-                  <Space>
-                    {" "}
-                    <MoonOutlined />
-                  </Space>
-                }
-                unCheckedChildren={
-                  <Space>
-                    <SunOutlined />
-                  </Space>
-                }
-              />
+              {/* <Toggle isChecked={theme} handleChange={() => setTheme(theme)} /> */}
               {/* <div className="changeMode"></div>
               <div className="btnChangeMode relative "></div> */}
             </div>

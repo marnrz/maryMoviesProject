@@ -5,24 +5,18 @@ import {
   faUsersRectangle,
   faVideo,
 } from "@fortawesome/free-solid-svg-icons";
-import { Input, Space } from "antd";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { SearchOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
+import Style from "./style";
+import Input from "antd/es/input/Input";
+import { colorPallet } from "../../../../Theme/commonStyle";
 
 export default function MenuBar() {
   const menuItems = [
     {
-      title: "Contact",
-      icon: faHeadphones,
-      link: "/",
-    },
-    {
-      title: "Genres",
-      icon: faUsersRectangle,
-      link: "#",
-    },
-    {
-      title: "Series",
-      icon: faFilm,
+      title: "Home",
+      icon: faHome,
       link: "/",
     },
     {
@@ -31,22 +25,30 @@ export default function MenuBar() {
       link: "/",
     },
     {
-      title: "Home",
-      icon: faHome,
+      title: "Series",
+      icon: faFilm,
+      link: "/",
+    },
+    {
+      title: "Genres",
+      icon: faUsersRectangle,
+      link: "#",
+    },
+    {
+      title: "Contact",
+      icon: faHeadphones,
       link: "/",
     },
   ];
-  const { Search } = Input;
-  const onSearch = (value) => {
-    console.log(value);
-  };
 
   function renderMenuItems() {
     return menuItems.map((item, index) => {
       return (
         <li key={index}>
           <Link to={item.link}>
-            <Space className="icon">{item.icon}</Space>
+            <span className="icon">
+              <FontAwesomeIcon icon={item.icon} />
+            </span>
             <h5>{item.title}</h5>
           </Link>
         </li>
@@ -54,29 +56,26 @@ export default function MenuBar() {
     });
   }
   return (
-    <>
+    <Style>
       <div className="menuBar relative z-2">
         <div className="wrapper">
-          <div className="menuWrapper absolute flex">
-            <div className="menu">
-              <ul className="flex">{renderMenuItems()}</ul>
-            </div>
-            {/* <Link to="/">
-              <Space direction="vertical">
-                <Search
-                  placeholder="search"
-                  onSearch={onSearch}
-                  enterButton="Search"
-                  size="large"
-                  style={{
-                    width: 200,
-                  }}
+          <div className="menuWrapper absolute">
+            <ul className="list justifyBetween gap-6 flex">
+              {renderMenuItems()}
+            </ul>
+            <Input
+              className="input"
+              placeholder="Search"
+              addonBg="rgba(0, 0, 0, 0.02)"
+              prefix={
+                <SearchOutlined
+                  style={{ color: `${colorPallet.primaryColor}` }}
                 />
-              </Space>
-            </Link> */}
+              }
+            />
           </div>
         </div>
       </div>
-    </>
+    </Style>
   );
 }

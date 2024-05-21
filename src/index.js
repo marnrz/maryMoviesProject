@@ -5,7 +5,6 @@ import { ConfigProvider } from "antd";
 
 import GlobalStyle from "./Theme/globalStyle";
 import Router from "./Components/Router";
-import { ThemeProvider } from "styled-components";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

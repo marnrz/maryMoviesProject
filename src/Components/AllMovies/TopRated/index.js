@@ -1,8 +1,12 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import api from "../../../Utils/Api/api";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow, Pagination } from "swiper/modules";
+import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 import ImageBasic from "../../../Utils/ImageBase/imageBase";
 import Style from "./style";
 
@@ -31,45 +35,56 @@ export default function TopRated() {
     }
   }
 
-  //   function handlePaginationClick(pageNumber) {
-  //     setCurrentPage(pageNumber);
-  //   }
-
-  function renderTopRatedMovie() {
-    return moviesData.map(({ id, poster_path }) => (
-      <li key={id} className="relative swiper-slide">
+  function renderTopRatedMovies() {
+    return moviesData.map(({ id, poster_path, title }) => (
+      <SwiperSlide key={id} className="swiperSlide">
         <Link to="#">
           <div className="topRatedBox">
-            <Swiper
-              effect={"coverflow"}
-              grabCursor={true}
-              centeredSlides={true}
-              slidesPerView={"auto"}
-              coverflowEffect={{
-                rotate: 50,
-                stretch: 0,
-                depth: 100,
-                modifier: 1,
-                slideShadows: true,
-              }}
-              pagination={true}
-              modules={[EffectCoverflow, Pagination]}
-              className="mySwiper"
-            >
-              <SwiperSlide className="swiperSlide">
-                <img src={`${ImageBasic.wUrl}${poster_path}`} />
-              </SwiperSlide>
-            </Swiper>
+            <img
+              className="poster"
+              src={`${ImageBasic.wUrl}${poster_path}`}
+              alt={`Movie ${id}`}
+            />
+            <p className="text">{title}</p>
           </div>
         </Link>
-      </li>
+      </SwiperSlide>
     ));
   }
 
   return (
     <Style>
-      <div className="topRated">
-        <ul className="list flex">{renderTopRatedMovie()}</ul>
+      <div className="topRated relative z-2">
+        <div className="wrapperFull">
+          <div className="topRatedFull ">
+            <h2 className="title">TopRated Movies</h2>
+            {loading ? (
+              <p>Loading...</p>
+            ) : (
+              <Swiper
+                effect={"coverflow"}
+                grabCursor={false}
+                centeredSlides={true}
+                slidesPerView={"5"}
+                loop={true}
+                coverflowEffect={{
+                  rotate: 50,
+                  stretch: 0,
+                  depth: 90,
+                  modifier: 0.8,
+                  slideShadows: false,
+                }}
+                autoplay={true}
+                navigation={true}
+                pagination={false}
+                modules={[EffectCoverflow, Navigation, Pagination]}
+                className="mySwiper"
+              >
+                {renderTopRatedMovies()}
+              </Swiper>
+            )}
+          </div>
+        </div>
       </div>
     </Style>
   );

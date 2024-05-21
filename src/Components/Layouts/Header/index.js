@@ -8,7 +8,7 @@ export default function Header() {
     <Fragment>
       <Background />
       <TopBar />
-      {/* <MenuBar /> */}
+      <MenuBar />
     </Fragment>
   );
 }

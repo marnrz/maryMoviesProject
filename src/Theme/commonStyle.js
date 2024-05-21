@@ -4,13 +4,13 @@ export const colorPallet = {
   primaryColor: "#eb8307",
   secondaryColor: "#6c3",
   darkSignColor: "#fff",
-  lightSignColor: "#000",
   darkPrimaryBackgroundColor: "#0B0B0F",
-  lightPrimaryBackgroundColor: "#0B0B0F",
   darkSecondaryBackgroundColor: "#242424",
-  lightSecondaryBackgroundColor: "#fff",
   darkTextColor: "#fff",
   lightTextColor: "#000",
+  lightSignColor: "#000",
+  lightSecondaryBackgroundColor: "#fff",
+  lightPrimaryBackgroundColor: "#0B0B0F",
 };
 export const defaultCss = {
   fullWidth: "100%",
