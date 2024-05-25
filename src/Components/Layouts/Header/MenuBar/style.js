@@ -4,10 +4,11 @@ export const Style = styled.div`
   .menuBar {
     direction: rtl;
     background-color: rgba(36, 36, 36, 0.9);
-    height: 80px;
+    height: 70px;
     width: ${defaultCss.fullWidth};
     .menuWrapper {
-      top: 5px;
+      top: 10px;
+      gap: 160px;
       .list {
         li {
           padding: 5px;
@@ -35,7 +36,7 @@ export const Style = styled.div`
         font-weight: 400;
         font-style: normal;
         min-width: 230px;
-        width: 250px;
+        width: 280px;
         height: 42px;
         direction: ltr;
         border-radius: ${defaultCss.secondaryBorderRadius};

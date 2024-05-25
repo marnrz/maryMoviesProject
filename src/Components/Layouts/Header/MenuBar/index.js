@@ -37,7 +37,7 @@ export default function MenuBar() {
     {
       title: "Contact",
       icon: faHeadphones,
-      link: "/",
+      link: "/contact-us",
     },
   ];
 
@@ -59,7 +59,7 @@ export default function MenuBar() {
     <Style>
       <div className="menuBar relative z-2">
         <div className="wrapper">
-          <div className="menuWrapper absolute">
+          <div className="menuWrapper absolute flex justifyBetween alignCenter">
             <ul className="list justifyBetween gap-6 flex">
               {renderMenuItems()}
             </ul>

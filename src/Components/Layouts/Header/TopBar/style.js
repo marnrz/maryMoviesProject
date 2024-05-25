@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { colorPallet, defaultCss } from "../../../../Theme/commonStyle";
 
 export const Style = styled.div`
+  .light .header * {
+  }
   .header {
     .headerWrapper {
       .logoSide {

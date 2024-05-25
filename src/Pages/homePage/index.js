@@ -1,13 +1,12 @@
-import TopRated from "../../Components/AllMovies/TopRated";
-import Holder from "../../Components/HolderSection";
+import HomePageContent from "../../Components/HomePageContent";
+
 import Layout from "../../Components/Layouts";
 import YearSlider, { PointSlider } from "../../Utils/Slider";
 
 export default function HomePage() {
   return (
     <Layout>
-      <TopRated />
-      <Holder />
+      <HomePageContent />
     </Layout>
   );
 }

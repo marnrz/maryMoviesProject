@@ -12,16 +12,9 @@ import { useState } from "react";
 import Toggle from "../../../../Utils/Toggle/toggle";
 
 export default function TopBar() {
-  const [theme, setTheme] = useState(false);
-  // [setTheme = "light"] = {
-  //   lightTextColor: "#000",
-  //   lightSignColor: "#000",
-  //   lightSecondaryBackgroundColor: "#fff",
-  //   lightPrimaryBackgroundColor: "#0B0B0F",
-  // };
   return (
     <Style>
-      <div className="header" setTheme={theme ? "light" : "dark"}>
+      <div className="header">
         <div className="wrapper">
           <div className="headerWrapper flex justifyBetween alignCenter mt-4 mb-4  relative z-2">
             <div className="logoSide flex alignCenter justifyCenter gap-4">
@@ -32,7 +25,6 @@ export default function TopBar() {
                   alt="logo"
                 />
               </Link>
-              {/* <Toggle isChecked={theme} handleChange={() => setTheme(theme)} /> */}
               {/* <div className="changeMode"></div>
               <div className="btnChangeMode relative "></div> */}
             </div>

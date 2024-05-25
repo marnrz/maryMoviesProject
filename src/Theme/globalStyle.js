@@ -66,6 +66,11 @@ a {
     margin: 0 auto;
     max-width: 1600px;
 }
+.wrapperBox {
+    width:780px;
+    padding:0 15px;
+    margin:0 auto;
+}
 .z-2 { 
     z-index:2;
 }
@@ -210,6 +215,12 @@ a {
 }
 .gap-6 {
     gap:30px;
+}
+.gap-7 {
+    gap:35px;
+}
+.gap-8 {
+    gap:40px;
 }
 /* @media */
 /* @media (max-width: 1240px) {

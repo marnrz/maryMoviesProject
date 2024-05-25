@@ -10,7 +10,7 @@ import "swiper/css/navigation";
 import ImageBasic from "../../../Utils/ImageBase/imageBase";
 import Style from "./style";
 
-export default function TopRated() {
+export default function SwiperTopRated() {
   const [moviesData, setMoviesData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(3);

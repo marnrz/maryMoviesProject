@@ -10,13 +10,14 @@ export const colorPallet = {
   lightTextColor: "#000",
   lightSignColor: "#000",
   lightSecondaryBackgroundColor: "#fff",
-  lightPrimaryBackgroundColor: "#0B0B0F",
+  lightPrimaryBackgroundColor: "#f2f2f2",
 };
 export const defaultCss = {
   fullWidth: "100%",
-  primaryBorderRadius: "7px",
+  primaryBorderRadius: "10px",
   secondaryBorderRadius: "20px",
   fullBorderRadius: "100%",
+  fontsizeP: "2rem",
 };
 export const Img = styled.img`
   width: 100%;
