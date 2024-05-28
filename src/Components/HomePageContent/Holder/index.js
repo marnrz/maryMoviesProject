@@ -13,6 +13,7 @@ import {
   faFolder,
 } from "@fortawesome/free-regular-svg-icons";
 import MovieListByGenre from "../ListByGenres";
+import renderMovieGenres from "../../../Utils/Genres/genres";
 
 export default function Holder(props) {
   const { id } = useParams();
@@ -176,31 +177,6 @@ export default function Holder(props) {
   //     });
   //     return credits.slice(0, 1).toString();
   //   }
-
-  function renderMovieGenres(genre_ids) {
-    const genreMap = {
-      80: "Crime",
-      10752: "War",
-      12: "Adventure",
-      16: "Animation",
-      9648: "Mystery",
-      10749: "Romance",
-      878: "Science Fiction",
-      10402: "Music",
-      27: "Horror",
-      18: "Drama",
-      10751: "Family",
-      36: "History",
-      28: "Action",
-      35: "Comedy",
-      37: "Western",
-      99: "Documentary",
-      14: "Fantasy",
-    };
-    return genre_ids.map((genre_id) => (
-      <p key={genre_id}>{genreMap[genre_id]}</p>
-    ));
-  }
 
   return (
     <Style>
