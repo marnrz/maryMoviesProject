@@ -99,17 +99,20 @@ export default function Trending({ title, type, dateString, serverApiUrl }) {
             <p>please wait...</p>
           ) : (
             <div className="trendingWrapper">
-              <div className="trendingBtn flex align-item justifyBetween">
-                <div className="titleBox flex gap-3 alignCenter">
-                  <h2 className="title ">{title}</h2>
-                  <Link to="#" className="viewMore flex gap-1">
-                    <span className="textViewMore">View More</span>
-                    <span className="icon">
-                      <FontAwesomeIcon icon={faAngleRight} />
-                    </span>
-                  </Link>
-                </div>
-                {location.pathname !== "/Search" && ( // Check if the current path is not "/search"
+              {location.pathname !== "/search" && (
+                <div className="trendingBtn flex align-item justifyBetween">
+                  <div className="titleBox flex gap-3 alignCenter">
+                    <h2 className="title ">{title}</h2>
+
+                    <Link to="#" className="viewMore flex gap-1">
+                      <span className="textViewMore">View More</span>
+
+                      <span className="icon">
+                        <FontAwesomeIcon icon={faAngleRight} />
+                      </span>
+                    </Link>
+                  </div>
+
                   <div className="selector">
                     <div className="anchor">
                       <h3>
@@ -121,8 +124,23 @@ export default function Trending({ title, type, dateString, serverApiUrl }) {
                         <Link to="#">This Week</Link>
                       </h3>
                     </div>
-
-                    {/* <Button
+                  </div>
+                </div>
+              )}
+              {loading ? (
+                <p>Please wait...</p>
+              ) : (
+                <ul className="list flex mt-4">{renderTrending()}</ul>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    </Style>
+  );
+}
+{
+  /* <Button
                       className="btn"
                       defaultActiveBg="${colorPallet.primaryColor}"
                       type="primary"
@@ -139,22 +157,5 @@ export default function Trending({ title, type, dateString, serverApiUrl }) {
                       onClick={() => getApi("week")}
                     >
                       Week
-                    </Button> */}
-                  </div>
-                )}
-              </div>
-              {/* {location.pathname !== "/search" && ( // Check if the current path is not "/search"
-                <h3>{type}</h3>
-              )} */}
-              {loading ? (
-                <p>Please wait...</p>
-              ) : (
-                <ul className="list flex mt-4">{renderTrending()}</ul>
-              )}
-            </div>
-          )}
-        </div>
-      </div>
-    </Style>
-  );
+                    </Button> */
 }

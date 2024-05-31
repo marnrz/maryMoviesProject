@@ -12,21 +12,20 @@ import {
   faClosedCaptioning,
   faFolder,
 } from "@fortawesome/free-regular-svg-icons";
-import MovieListByGenre from "../ListByGenres";
+import MovieListByGenre from "../../ListByGenres/FilterList";
 import renderMovieGenres from "../../../Utils/Genres/genres";
 
 export default function Holder(props) {
   const { id } = useParams();
   const [movie, setMovie] = useState([]);
   const [series, setSeries] = useState([]);
-  //   const [credits, setCredits] = useState([]);
   const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     getPopularMoviesApi();
     getPopularSeriesApi();
   }, [id]);
 
-  // Api
   async function getPopularMoviesApi() {
     try {
       setLoading(true);
@@ -38,9 +37,9 @@ export default function Holder(props) {
       });
       console.log(response);
       setMovie(response.data.results.slice(0, 10));
-      setLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error.message);
+    } finally {
       setLoading(false);
     }
   }
@@ -56,16 +55,15 @@ export default function Holder(props) {
       });
       console.log(response);
       setSeries(response.data.results.slice(0, 15));
-      setLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error.message);
+    } finally {
       setLoading(false);
     }
   }
 
-  //   render function
   function renderPopularMovies() {
-    if (movie === null || movie === undefined) return "";
+    if (!movie) return "";
     return movie.map(
       ({
         title,
@@ -76,73 +74,70 @@ export default function Holder(props) {
         release_date,
         vote_average,
         vote_count,
-      }) => {
-        return (
-          <li key={id} className="flex justifyBetween alignCenter relative ">
-            <div className="coverBox ">
-              <Link to="#">
-                <img src={`${ImageBasic.wUrl}${poster_path}`} alt={title} />
-              </Link>
-            </div>
-            <div className="movieDetails">
-              <div className="titleContent flex justifyBetween">
-                <div className="left">
+      }) => (
+        <li key={id} className="flex justifyBetween alignCenter relative">
+          <div className="coverBox">
+            <Link to="#">
+              <img src={`${ImageBasic.wUrl}${poster_path}`} alt={title} />
+            </Link>
+          </div>
+          <div className="movieDetails">
+            <div className="titleContent flex justifyBetween">
+              <div className="left">
+                <div className="title mb-5">
                   <h1>{title}</h1>
                 </div>
-                <div className="right">
-                  <div className="imdbHolder">
-                    <div className="rateNum">
-                      <strong
-                        className={`voteColor ${renderRateColor(vote_average)}`}
-                      >
-                        {vote_average.toFixed(1)}
-                      </strong>
-                      <small>/10</small>
-                      <span className="voteNum">
-                        <b>Votes:</b> {vote_count}
-                      </span>
-                    </div>
-                    <div className="imdb">
-                      <a href="#">
-                        <FontAwesomeIcon
-                          className="icon"
-                          icon={faImdb}
-                          style={{ color: `${colorPallet.primaryColor}` }}
-                        />
-                      </a>
-                    </div>
+                <p className="date mb-2">
+                  <DateChanger dateString={release_date} />
+                </p>
+                <div className="genres mb-2">
+                  <p className="flex alignCenter gap-2">
+                    <FontAwesomeIcon
+                      icon={faFolder}
+                      style={{ color: `${colorPallet.primaryColor}` }}
+                    />
+                    <b>Genres:</b>
+                    {renderMovieGenres(genre_ids).join(", ")}
+                  </p>
+                </div>
+                <div className="overview">
+                  <p>{overview}</p>
+                </div>
+              </div>
+              <div className="right">
+                <div className="imdbHolder flex justifyBetween gap-2">
+                  <div className="rateNum">
+                    <strong
+                      className={`voteColor ${renderRateColor(vote_average)}`}
+                    >
+                      {vote_average.toFixed(1)}
+                    </strong>
+                    <small>/10</small>
+                    <span className="voteNum flex">
+                      <b>Votes:</b> {vote_count}
+                    </span>
+                  </div>
+                  <div className="imdb">
+                    <a href="https://www.imdb.com/title/tt2674454/">
+                      <h3>IMDb</h3>
+                    </a>
                   </div>
                 </div>
               </div>
-              <p>
-                <DateChanger dateString={release_date} />
-              </p>
-              <div className=" genres ">
-                <p className="flex alignCenter gap-2">
-                  <FontAwesomeIcon
-                    icon={faFolder}
-                    style={{ color: `${colorPallet.primaryColor}` }}
-                  />
-                  <b>Genres:</b>
-                  {renderMovieGenres(genre_ids)}
-                </p>
-              </div>
-              <div className="overview">
-                <p>{overview}</p>
+              <div className="subtitlesItem absolute">
+                <div className="ccIcon absolute">
+                  <FontAwesomeIcon className="icon" icon={faClosedCaptioning} />
+                </div>
               </div>
             </div>
-            <div className="subtitlesItem absolute">
-              <div className="ccIcon absolute">
-                <FontAwesomeIcon className="icon" icon={faClosedCaptioning} />
-              </div>
-            </div>
-          </li>
-        );
-      }
+          </div>
+        </li>
+      )
     );
   }
+
   function renderPopularTv() {
-    if (series === null || series === undefined) return "";
+    if (!series) return "";
     return series.map(
       ({
         name,
@@ -153,30 +148,18 @@ export default function Holder(props) {
         overview,
         vote_average,
         vote_count,
-      }) => {
-        return (
-          <li key={id} className="flex justifyBetween alignCenter relative">
-            <div className="coverBox ">
-              <Link to="#">
-                <img src={`${ImageBasic.wUrl}${poster_path}`} alt={name} />
-                <p className="text">{name}</p>
-              </Link>
-            </div>
-          </li>
-        );
-      }
+      }) => (
+        <li key={id} className="flex justifyBetween alignCenter relative">
+          <div className="coverBox">
+            <Link to="#">
+              <img src={`${ImageBasic.wUrl}${poster_path}`} alt={name} />
+              <p className="text">{name}</p>
+            </Link>
+          </div>
+        </li>
+      )
     );
   }
-
-  //   function renderMovieDirector() {
-  //     if (credits === null || credits === undefined) return "";
-  //     credits.map(({ known_for_department, name }) => {
-  //       if (known_for_department == "Directing") {
-  //         credits.push(name);
-  //       }
-  //     });
-  //     return credits.slice(0, 1).toString();
-  //   }
 
   return (
     <Style>
@@ -209,4 +192,11 @@ export default function Holder(props) {
       </div>
     </Style>
   );
+}
+{
+  /* <FontAwesomeIcon
+  className="icon"
+  icon={faImdb}
+  style={{ color: `${colorPallet.primaryColor}` }}
+/>; */
 }

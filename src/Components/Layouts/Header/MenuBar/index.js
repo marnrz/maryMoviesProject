@@ -22,12 +22,12 @@ export default function MenuBar() {
     {
       title: "Movies",
       icon: faVideo,
-      link: "/",
+      link: "/m",
     },
     {
       title: "Series",
       icon: faFilm,
-      link: "/",
+      link: "/s",
     },
     {
       title: "Genres",
@@ -63,16 +63,18 @@ export default function MenuBar() {
             <ul className="list justifyBetween gap-6 flex">
               {renderMenuItems()}
             </ul>
-            <Input
-              className="input"
-              placeholder="Search"
-              addonBg="rgba(0, 0, 0, 0.02)"
-              prefix={
-                <SearchOutlined
-                  style={{ color: `${colorPallet.primaryColor}` }}
-                />
-              }
-            />
+            <Link to="/search">
+              <Input
+                className="input"
+                placeholder="Search"
+                addonBg="rgba(0, 0, 0, 0.02)"
+                prefix={
+                  <SearchOutlined
+                    style={{ color: `${colorPallet.primaryColor}` }}
+                  />
+                }
+              />
+            </Link>
           </div>
         </div>
       </div>

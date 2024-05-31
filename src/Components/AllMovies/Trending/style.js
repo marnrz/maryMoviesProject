@@ -28,8 +28,8 @@ export const Style = styled.div`
     .list {
       li {
         .noPic {
-          width: 120px;
-          height: 180px;
+          width: 150px;
+          height: 200px;
           border: 1px solid ${colorPallet.primaryColor};
           border-radius: ${defaultCss.primaryBorderRadius};
           background-color: rgba(255, 255, 255, 0.8);

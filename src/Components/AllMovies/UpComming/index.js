@@ -9,7 +9,7 @@ import api from "../../../Utils/Api/api";
 import renderMovieGenres from "../../../Utils/Genres/genres";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
-export default function UpComming({ title, serverApiUrl, dateString }) {
+export default function UpComming({ title, serverApiUrl }) {
   const [moviesData, setMoviesData] = useState([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {

@@ -25,17 +25,28 @@ export const Style = styled.div`
             }
             .movieDetails {
               width: 75%;
-
               color: ${colorPallet.darkTextColor};
               min-height: 200px;
               height: auto;
               padding-right: 30px;
+              margin-left: 10px;
               .titleContent {
                 .left {
+                  .date {
+                    font-size: 1.4rem;
+                  }
+                  .genres {
+                    font-size: 1.5rem;
+                  }
+                  .overview {
+                    font-size: 1.2rem;
+                  }
                 }
                 .right {
                   .imdbHolder {
                     .rateNum {
+                      font-size: 1.2rem;
+                      text-align: center;
                       .voteColor {
                         margin-left: 5px;
                       }
@@ -52,38 +63,44 @@ export const Style = styled.div`
                         color: #000;
                       }
                       .voteNum {
+                        width: 65px;
                         display: block;
                         border-top: 1px solid rgba(255, 255, 255, 0.2);
                         padding-top: 7px;
                         margin: 5px 0;
-                        font-size: 85%;
                       }
                     }
                     .imdb {
-                      .icon {
+                      h3 {
+                        border: 2px solid ${colorPallet.primaryColor};
+                        border-radius: 5px;
+                        color: ${colorPallet.primaryColor};
+                        padding: 3px;
+                      }
+                      /* .icon {
                         font-size: 35px;
                         margin-left: 10px;
-                      }
+                      } */
                     }
                   }
                 }
-              }
-            }
-            .subtitlesItem {
-              right: -24px;
-              top: 50%;
-              width: 48px;
-              height: 48px;
-              transform: rotate(45deg);
-              border-radius: 5px;
-              background-color: ${colorPallet.secondaryColor};
-              .ccIcon {
-                top: 26%;
-                left: 24%;
-                transform: rotate(-45deg);
-                .icon {
-                  color: ${colorPallet.darkSignColor};
-                  font-size: 2.3rem;
+                .subtitlesItem {
+                  right: -24px;
+                  top: 50%;
+                  width: 48px;
+                  height: 48px;
+                  transform: rotate(45deg);
+                  border-radius: 5px;
+                  background-color: ${colorPallet.secondaryColor};
+                  .ccIcon {
+                    top: 26%;
+                    left: 24%;
+                    transform: rotate(-45deg);
+                    .icon {
+                      color: ${colorPallet.darkSignColor};
+                      font-size: 2.3rem;
+                    }
+                  }
                 }
               }
             }

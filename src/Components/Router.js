@@ -7,6 +7,7 @@ import Error404 from "../Pages/Error404";
 import MovieList from "../Pages/MovieList";
 import SeriesList from "../Pages/SeriesList";
 import ShowListOfMovies from "../Pages/ShowListOfMovies";
+import SearchPage from "../Pages/Search";
 
 export default function Router() {
   const router = createBrowserRouter([
@@ -35,12 +36,16 @@ export default function Router() {
       element: <ShowListOfMovies />,
     },
     {
-      path: "/upcomming",
+      path: "/m/upcomming",
       element: <ShowListOfMovies />,
     },
     {
       path: "/m/trending",
       element: <ShowListOfMovies />,
+    },
+    {
+      path: "/search",
+      element: <SearchPage />,
     },
     {
       path: "*",
