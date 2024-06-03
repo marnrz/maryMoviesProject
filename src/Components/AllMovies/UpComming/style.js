@@ -8,6 +8,7 @@ export const Style = styled.div`
         font-size: 2rem;
       }
       .viewMore {
+        gap: 0.5rem;
         font-size: 1.3rem;
         color: ${colorPallet.darkTextColor};
         &:hover {
@@ -15,7 +16,6 @@ export const Style = styled.div`
         }
       }
     }
-
     .list {
       gap: 80px;
       li {
@@ -48,6 +48,9 @@ export const Style = styled.div`
           &:hover {
             &::before {
               opacity: 1;
+            }
+            .playIcon {
+              color: ${colorPallet.primaryColor};
             }
             border: 1px solid ${colorPallet.primaryColor};
             min-width: 250px;

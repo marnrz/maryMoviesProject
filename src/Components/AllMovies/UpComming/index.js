@@ -65,7 +65,13 @@ export default function UpComming({ title, serverApiUrl }) {
                 </div>
               )}
               <h2 className="mt-4 mb-1">{title || name}</h2>
-              <p className="flex">{renderMovieGenres(genre_ids)}</p>
+              <p className="flex">
+                {renderMovieGenres(genre_ids).map((genre, index) => (
+                  <span key={index} className="flex justifyBetween alignCenter">
+                    {genre} {index < genre_ids.length - 1 && ", "}
+                  </span>
+                ))}
+              </p>
               <p>
                 <DateChanger dateString={release_date || first_air_date} />
               </p>
@@ -85,7 +91,7 @@ export default function UpComming({ title, serverApiUrl }) {
             <div className="upCommingWrapper ">
               <div className="titleBox flex gap-3 alignCenter">
                 <h2 className="title ">{title}</h2>
-                <Link to="#" className="viewMore flex gap-1">
+                <Link to="/m/upcomming" className="viewMore flex alignCenter">
                   <span className="textViewMore">View More</span>
                   <span className="icon">
                     <FontAwesomeIcon icon={faAngleRight} />

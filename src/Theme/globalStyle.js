@@ -196,6 +196,12 @@ a {
 .mt-6 {
     margin-top: 30px;
 }
+.mt-7 {
+    margin-top: 35px;
+}
+.mt-8 {
+    margin-top: 40px;
+}
 
 /* gap */
 .gap-1 {

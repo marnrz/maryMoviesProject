@@ -8,6 +8,7 @@ import MovieList from "../Pages/MovieList";
 import SeriesList from "../Pages/SeriesList";
 import ShowListOfMovies from "../Pages/ShowListOfMovies";
 import SearchPage from "../Pages/Search";
+import SingleMovie from "../Pages/SingleMovie";
 
 export default function Router() {
   const router = createBrowserRouter([
@@ -32,7 +33,7 @@ export default function Router() {
       element: <SeriesList />,
     },
     {
-      path: "/movies",
+      path: "/all-movies",
       element: <ShowListOfMovies />,
     },
     {
@@ -46,6 +47,10 @@ export default function Router() {
     {
       path: "/search",
       element: <SearchPage />,
+    },
+    {
+      path: "/m/:id",
+      element: <SingleMovie />,
     },
     {
       path: "*",

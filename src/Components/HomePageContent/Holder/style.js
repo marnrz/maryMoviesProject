@@ -17,8 +17,6 @@ export const Style = styled.div`
               width: 25%;
               img {
                 border-radius: ${defaultCss.primaryBorderRadius};
-              }
-              img {
                 width: 150px;
                 height: auto;
               }
@@ -36,7 +34,7 @@ export const Style = styled.div`
                     font-size: 1.4rem;
                   }
                   .genres {
-                    font-size: 1.5rem;
+                    font-size: 1.4rem;
                   }
                   .overview {
                     font-size: 1.2rem;

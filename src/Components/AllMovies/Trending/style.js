@@ -109,6 +109,7 @@ export const Style = styled.div`
               font-size: 3rem;
               width: 100%;
               height: 100%;
+              color: ${colorPallet.primaryColor};
             }
           }
         }

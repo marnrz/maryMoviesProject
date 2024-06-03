@@ -6,7 +6,6 @@ import ImageBasic from "../../../Utils/ImageBase/imageBase";
 import renderRateColor from "../../../Utils/CollorRating";
 import DateChanger from "../../../Utils/DateChanger/date";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faImdb } from "@fortawesome/free-brands-svg-icons";
 import { colorPallet } from "../../../Theme/commonStyle";
 import {
   faClosedCaptioning,
@@ -77,7 +76,7 @@ export default function Holder(props) {
       }) => (
         <li key={id} className="flex justifyBetween alignCenter relative">
           <div className="coverBox">
-            <Link to="#">
+            <Link to={`/m/${id}`}>
               <img src={`${ImageBasic.wUrl}${poster_path}`} alt={title} />
             </Link>
           </div>
@@ -97,7 +96,15 @@ export default function Holder(props) {
                       style={{ color: `${colorPallet.primaryColor}` }}
                     />
                     <b>Genres:</b>
-                    {renderMovieGenres(genre_ids).join(", ")}
+                    {renderMovieGenres(genre_ids).map((genre, index) => (
+                      <span
+                        key={index}
+                        className="flex justifyBetween alignCenter"
+                      >
+                        {genre}
+                        {index < genre_ids.length - 1 && ", "}
+                      </span>
+                    ))}
                   </p>
                 </div>
                 <div className="overview">
@@ -118,7 +125,10 @@ export default function Holder(props) {
                     </span>
                   </div>
                   <div className="imdb">
-                    <a href="https://www.imdb.com/title/tt2674454/">
+                    <a
+                      href="https://www.imdb.com/title/${imdb_id}/"
+                      target="_blank"
+                    >
                       <h3>IMDb</h3>
                     </a>
                   </div>

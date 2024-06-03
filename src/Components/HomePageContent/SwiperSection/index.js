@@ -38,7 +38,7 @@ export default function SwiperTopRated() {
   function renderTopRatedMovies() {
     return moviesData.map(({ id, poster_path, title }) => (
       <SwiperSlide key={id} className="swiperSlide">
-        <Link to="#">
+        <Link to={`/m/${id}`}>
           <div className="topRatedBox">
             <img
               className="poster"

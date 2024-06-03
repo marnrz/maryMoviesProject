@@ -22,4 +22,14 @@ export function renderMovieGenres(genre_ids) {
     <p key={genre_id}>{genreMap[genre_id]}</p>
   ));
 }
+export function renderSingleGenres(genres, i) {
+  if (genres === undefined) return;
+  return genres.map((cur, i) => {
+    return (
+      <p className="box " key={cur.id}>
+        {i !== genres.length - 1 ? cur.name + ", " : cur.name}
+      </p>
+    );
+  });
+}
 export default renderMovieGenres;

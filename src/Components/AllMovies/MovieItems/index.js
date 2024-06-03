@@ -51,7 +51,7 @@ export default function MovieItems({ title, serverApiUrl }) {
       }) => {
         return (
           <li className=" col-2 relative" key={id}>
-            <Link to="#">
+            <Link to={`/m/${id}`}>
               {poster_path == null ? (
                 <div className="noPic relative">
                   <span className="iconPlace absolute">
@@ -66,7 +66,7 @@ export default function MovieItems({ title, serverApiUrl }) {
                       vote_average
                     )} absolute`}
                   >
-                    {vote_average.toFixed(1)}
+                    {vote_average.toFixed(1) * 10}%
                   </strong>
                   <span className="icon absolute">
                     <FontAwesomeIcon className="playIcon" icon={faCirclePlay} />
@@ -83,28 +83,7 @@ export default function MovieItems({ title, serverApiUrl }) {
       }
     );
   }
-  // const itemRender = (_, type, originalElement) => {
-  //   if (type === "prev") {
-  //     return <a>Previous</a>;
-  //   }
-  //   if (type === "next") {
-  //     return <a>Next</a>;
-  //   }
-  //   return originalElement;
-  // };
-  // function onChange(page) {
-  //   getMovieApi(page);
-  // }
-  // const App = () => (
-  //   <Pagination
-  //     onChange={onChange}
-  //     total={500}
-  //     itemRender={itemRender}
-  //     defaultCurrent={1}
-  //     defaultPageSize={20}
-  //     showSizeChanger={false}
-  //   />
-  // );
+
   return (
     <Style>
       <div className="movieItem relative z-2 mt-6">
@@ -115,7 +94,7 @@ export default function MovieItems({ title, serverApiUrl }) {
             <div className="movieItemWrapper ">
               <div className="titleBox flex gap-3 alignCenter">
                 <h2 className="title ">{title}</h2>
-                <Link to="#" className="viewMore flex gap-1">
+                <Link to="/all-movies" className="viewMore flex gap-1">
                   <span className="textViewMore">View More</span>
                   <span className="icon">
                     <FontAwesomeIcon icon={faAngleRight} />
