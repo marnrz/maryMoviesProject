@@ -6,9 +6,9 @@ import AboutUs from "../Pages/AboutUs";
 import Error404 from "../Pages/Error404";
 import MovieList from "../Pages/MovieList";
 import SeriesList from "../Pages/SeriesList";
-import ShowListOfMovies from "../Pages/ShowListOfMovies";
 import SearchPage from "../Pages/Search";
 import SingleMovie from "../Pages/SingleMovie";
+import ShowAllMovies from "../Pages/ShowLAllMovies";
 
 export default function Router() {
   const router = createBrowserRouter([
@@ -34,15 +34,15 @@ export default function Router() {
     },
     {
       path: "/all-movies",
-      element: <ShowListOfMovies />,
+      element: <ShowAllMovies />,
     },
     {
       path: "/m/upcomming",
-      element: <ShowListOfMovies />,
+      element: <ShowAllMovies />,
     },
     {
       path: "/m/trending",
-      element: <ShowListOfMovies />,
+      element: <ShowAllMovies />,
     },
     {
       path: "/search",

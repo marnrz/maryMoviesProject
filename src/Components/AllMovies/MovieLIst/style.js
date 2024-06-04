@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colorPallet, defaultCss } from "../../Theme/commonStyle";
+import { colorPallet, defaultCss } from "../../../Theme/commonStyle";
 
 export const Style = styled.div`
   padding: 35px 0;

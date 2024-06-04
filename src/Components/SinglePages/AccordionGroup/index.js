@@ -1,6 +1,10 @@
 import { Collapse, Space } from "antd";
+import api from "../../../Utils/Api/api";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 export default function Accordion() {
+  const { id } = useParams();
   const [images, setImages] = useState([]);
   const [similar, setSimilar] = useState([]);
   const [recommendations, setRecommendations] = useState([]);
@@ -14,7 +18,8 @@ export default function Accordion() {
       setLoading(true);
       const response = await api.get(`movie/${id}`, {
         params: {
-          append_to_response: "similar,recommendations,images",
+          language: "en-US",
+          append_to_response: "credits,similar,images",
         },
       });
       setImages(response.data.images.backdrops.slice(0, 14));
@@ -35,7 +40,7 @@ export default function Accordion() {
     },
     {
       key: "2",
-      label: "Casts",
+      label: "Images",
       children: "",
     },
     {
@@ -43,49 +48,44 @@ export default function Accordion() {
       label: "Similars",
       children: "",
     },
-    {
-      key: "4",
-      label: "Recommendations",
-      children: "",
-    },
   ];
-  //   function render
-  const App = () => (
-    <Space direction="vertical">
-      <Collapse
-        collapsible="header"
-        defaultActiveKey={["1"]}
-        items={[
-          {
-            key: "1",
-            label: "This panel can only be collapsed by clicking text",
-            children: <p>{text}</p>,
-          },
-        ]}
-      />
-      <Collapse
-        collapsible="icon"
-        defaultActiveKey={["1"]}
-        items={[
-          {
-            key: "1",
-            label: "This panel can only be collapsed by clicking icon",
-            children: <p>{text}</p>,
-          },
-        ]}
-      />
-      <Collapse
-        collapsible="disabled"
-        items={[
-          {
-            key: "1",
-            label: "This panel can't be collapsed",
-            children: <p>{text}</p>,
-          },
-        ]}
-      />
-    </Space>
-  );
+  // function render
+  //   const App = () => (
+  //     <Space direction="vertical">
+  //       <Collapse
+  //         collapsible="header"
+  //         defaultActiveKey={["1"]}
+  //         items={[
+  //           {
+  //             key: "1",
+  //             label: "This panel can only be collapsed by clicking text",
+  //             children: <p>{text}</p>,
+  //           },
+  //         ]}
+  //       />
+  //       <Collapse
+  //         collapsible="icon"
+  //         defaultActiveKey={["1"]}
+  //         items={[
+  //           {
+  //             key: "1",
+  //             label: "This panel can only be collapsed by clicking icon",
+  //             children: <p>{text}</p>,
+  //           },
+  //         ]}
+  //       />
+  //       <Collapse
+  //         collapsible="disabled"
+  //         items={[
+  //           {
+  //             key: "1",
+  //             label: "This panel can't be collapsed",
+  //             children: <p>{text}</p>,
+  //           },
+  //         ]}
+  //       />
+  //     </Space>
+  //   );
 
   return (
     <>
