@@ -10,7 +10,7 @@ import { faCameraRetro, faCirclePlay } from "@fortawesome/free-solid-svg-icons";
 import ImageBasic from "../../Utils/ImageBase/imageBase";
 import renderRateColor from "../../Utils/CollorRating";
 import Style from "./style";
-import Trending from "../../Components/AllMovies/Trending";
+import Trending from "../../Components/AllMovies/AllMovieItems/Trending";
 
 export default function SearchPage() {
   const [moviesData, setMoviesData] = useState([]);

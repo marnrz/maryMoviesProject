@@ -1,6 +1,5 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import HomePage from "../Pages/homePage";
-
 import ContactUs from "../Pages/ContactUs";
 import AboutUs from "../Pages/AboutUs";
 import Error404 from "../Pages/Error404";
@@ -8,7 +7,7 @@ import MovieList from "../Pages/MovieList";
 import SeriesList from "../Pages/SeriesList";
 import SearchPage from "../Pages/Search";
 import SingleMovie from "../Pages/SingleMovie";
-import ShowAllMovies from "../Pages/ShowLAllMovies";
+import ShowAllMovies from "../Pages/ShowAll/Movies";
 
 export default function Router() {
   const router = createBrowserRouter([
@@ -42,7 +41,7 @@ export default function Router() {
     },
     {
       path: "/m/trending",
-      element: <ShowAllMovies />,
+      element: <ShowAllMovies time_window="day" />,
     },
     {
       path: "/search",

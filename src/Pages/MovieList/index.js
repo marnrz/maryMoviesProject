@@ -1,6 +1,6 @@
-import MovieItems from "../../Components/AllMovies/MovieItems";
-import Trending from "../../Components/AllMovies/Trending";
-import UpComming from "../../Components/AllMovies/UpComming";
+import MovieItems from "../../Components/AllMovies/AllMovieItems/MovieItems";
+import Trending from "../../Components/AllMovies/AllMovieItems/Trending";
+import UpComming from "../../Components/AllMovies/AllMovieItems/UpComming";
 import Layout from "../../Components/Layouts";
 
 export default function MovieList() {

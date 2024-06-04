@@ -3,11 +3,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCameraRetro, faCirclePlay } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import Style from "./style";
-import DateChanger from "../../../Utils/DateChanger/date";
-import ImageBasic from "../../../Utils/ImageBase/imageBase";
-import api from "../../../Utils/Api/api";
-import renderMovieGenres from "../../../Utils/Genres/genres";
+import ImageBasic from "../../../../Utils/ImageBase/imageBase";
+import DateChanger from "../../../../Utils/DateChanger/date";
+import api from "../../../../Utils/Api/api";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import renderMovieGenres from "../../../../Utils/Genres/genres";
 
 export default function UpComming({ title, serverApiUrl }) {
   const [moviesData, setMoviesData] = useState([]);

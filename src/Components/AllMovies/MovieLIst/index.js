@@ -297,7 +297,7 @@ export default function AllMovieList({ title, serverApiUrl, time }) {
           <div className="wrapperFull">
             <div className="showListWrapper relative z-2">
               <div className="title flex justifyCenter textCenter mb-5">
-                <h3>Movies Download</h3>
+                <h3>{title}</h3>
               </div>
               <div className="movieList">
                 <ul className="list flex wrap mt-6">{renderMovieItem()}</ul>

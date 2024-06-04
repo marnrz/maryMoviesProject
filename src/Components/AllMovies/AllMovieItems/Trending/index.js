@@ -7,10 +7,10 @@ import {
   faCirclePlay,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, useLocation } from "react-router-dom";
-import api from "../../../Utils/Api/api";
-import DateChanger from "../../../Utils/DateChanger/date";
-import ImageBasic from "../../../Utils/ImageBase/imageBase";
-import renderRateColor from "../../../Utils/CollorRating";
+import ImageBasic from "../../../../Utils/ImageBase/imageBase";
+import renderRateColor from "../../../../Utils/CollorRating";
+import DateChanger from "../../../../Utils/DateChanger/date";
+import api from "../../../../Utils/Api/api";
 
 export default function Trending({ title, serverApiUrl }) {
   const [moviesData, setMoviesData] = useState([]);

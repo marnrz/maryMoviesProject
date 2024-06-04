@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
-import ImageBasic from "../../../Utils/ImageBase/imageBase";
 import Style from "./style";
 import { Link } from "react-router-dom";
-import renderRateColor from "../../../Utils/CollorRating";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleRight,
   faCameraRetro,
   faCirclePlay,
 } from "@fortawesome/free-solid-svg-icons";
-import DateChanger from "../../../Utils/DateChanger/date";
-import api from "../../../Utils/Api/api";
+import ImageBasic from "../../../../Utils/ImageBase/imageBase";
+import renderRateColor from "../../../../Utils/CollorRating";
+import DateChanger from "../../../../Utils/DateChanger/date";
+import api from "../../../../Utils/Api/api";
 
 export default function MovieItems({ title, serverApiUrl }) {
   const [moviesDataItem, setMoviesDataItem] = useState([]);

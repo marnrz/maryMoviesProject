@@ -1,14 +1,13 @@
 import styled from "styled-components";
-import { colorPallet, defaultCss } from "../../../Theme/commonStyle";
+import { colorPallet, defaultCss } from "../../../../Theme/commonStyle";
 
 export const Style = styled.div`
-  .upComming {
+  .movieItemWrapper {
     .titleBox {
       .title {
         font-size: 2rem;
       }
       .viewMore {
-        gap: 0.5rem;
         font-size: 1.3rem;
         color: ${colorPallet.darkTextColor};
         &:hover {
@@ -17,13 +16,13 @@ export const Style = styled.div`
       }
     }
     .list {
-      gap: 80px;
       li {
         .noPic {
-          width: 240px;
-          height: 180px;
+          width: 150px;
+          height: 200px;
           border: 1px solid ${colorPallet.primaryColor};
           background-color: rgba(255, 255, 255, 0.8);
+          border-radius: ${defaultCss.primaryBorderRadius};
           .iconPlace {
             top: 50%;
             left: 50%;
@@ -48,22 +47,47 @@ export const Style = styled.div`
           &:hover {
             &::before {
               opacity: 1;
+              border-radius: ${defaultCss.primaryBorderRadius};
             }
-            .playIcon {
-              color: ${colorPallet.primaryColor};
+            .icon {
+              opacity: 1;
             }
             border: 1px solid ${colorPallet.primaryColor};
-            min-width: 250px;
-            transition: all 0.2s ease-out;
-            transform: scale(1);
+            border-radius: ${defaultCss.primaryBorderRadius};
           }
-          width: 240px;
-          height: 140px;
+          width: 150px;
+          height: 200px;
           border: 1px solid #fff;
+          border-radius: ${defaultCss.primaryBorderRadius};
+
           img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            border-radius: ${defaultCss.primaryBorderRadius};
+          }
+          .voteColor {
+            background: ${colorPallet.backgroundColor};
+            bottom: -10px;
+            left: 5px;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            align-content: center;
+            border-radius: 15px;
+            border: 2px solid ${colorPallet.primaryColor};
+          }
+          strong.green {
+            color: #42f5b6;
+          }
+          strong.orange {
+            color: #f5bf42;
+          }
+          strong.red {
+            color: ${colorPallet.primaryColor};
+          }
+          strong.black {
+            color: #000;
           }
           .icon {
             width: 30px;
@@ -71,10 +95,12 @@ export const Style = styled.div`
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            opacity: 0;
             .playIcon {
               font-size: 3rem;
               width: 100%;
               height: 100%;
+              color: ${colorPallet.primaryColor};
             }
           }
         }
