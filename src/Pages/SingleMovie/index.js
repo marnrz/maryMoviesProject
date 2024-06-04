@@ -1,11 +1,13 @@
 import { Fragment } from "react";
 import Layout from "../../Components/Layouts";
-import SingleMoviePages from "../../Components/SinglePages/SingleMoviePage";
+import HeroSinglePage from "../../Components/SinglePages/SingleMoviePage";
+import Accordion from "../../Components/SinglePages/AccordionGroup";
 
 export default function SingleMovie() {
   return (
     <Layout>
-      <SingleMoviePages />
+      <HeroSinglePage />
+      <Accordion />
     </Layout>
   );
 }
