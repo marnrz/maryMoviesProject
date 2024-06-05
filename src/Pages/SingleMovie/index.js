@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import Layout from "../../Components/Layouts";
 import HeroSinglePage from "../../Components/SinglePages/SingleMoviePage";
 import Accordion from "../../Components/SinglePages/AccordionGroup";

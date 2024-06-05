@@ -6,13 +6,13 @@ export default function ShowAllMovies({ time_window }) {
   console.log("Current path:", location.pathname); // Debugging log
   return (
     <>
-      {location.pathname == "/all-movies" && (
+      {location.pathname === "/all-movies" && (
         <AllMovieList title="All Movies" serverApiUrl="discover/movie" />
       )}
-      {location.pathname == "/m/upcomming" && (
+      {location.pathname === "/m/upcomming" && (
         <AllMovieList title="Upcomming Movies" serverApiUrl="movie/upcoming" />
       )}
-      {location.pathname == "/m/trending" && (
+      {location.pathname === "/m/trending" && (
         <AllMovieList
           title="Trending Movies"
           time="day"

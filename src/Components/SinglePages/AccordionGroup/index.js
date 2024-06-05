@@ -1,13 +1,15 @@
 import { Collapse, Space } from "antd";
 import api from "../../../Utils/Api/api";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import ImageBasic from "../../../Utils/ImageBase/imageBase";
+import AllMovieList from "../../AllMovies/MovieLIst";
 
 export default function Accordion() {
   const { id } = useParams();
   const [images, setImages] = useState([]);
   const [similar, setSimilar] = useState([]);
-  const [recommendations, setRecommendations] = useState([]);
+  const [casts, setCasts] = useState([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     getMoviesApi();
@@ -22,9 +24,9 @@ export default function Accordion() {
           append_to_response: "credits,similar,images",
         },
       });
+      setCasts(response.data.casts.cast.slice(0, 14));
       setImages(response.data.images.backdrops.slice(0, 14));
       setSimilar(response.data.similar.results.slice(0, 9));
-      setRecommendations(response.data.recommendations.results.slice(0, 9));
       console.log(response);
       setLoading(false);
     } catch (error) {
@@ -32,64 +34,90 @@ export default function Accordion() {
       setLoading(false);
     }
   }
-  const items = [
-    {
-      key: "1",
-      label: "Casts",
-      children: "",
-    },
-    {
-      key: "2",
-      label: "Images",
-      children: "",
-    },
-    {
-      key: "3",
-      label: "Similars",
-      children: "",
-    },
-  ];
-  // function render
-  //   const App = () => (
-  //     <Space direction="vertical">
-  //       <Collapse
-  //         collapsible="header"
-  //         defaultActiveKey={["1"]}
-  //         items={[
-  //           {
-  //             key: "1",
-  //             label: "This panel can only be collapsed by clicking text",
-  //             children: <p>{text}</p>,
-  //           },
-  //         ]}
-  //       />
-  //       <Collapse
-  //         collapsible="icon"
-  //         defaultActiveKey={["1"]}
-  //         items={[
-  //           {
-  //             key: "1",
-  //             label: "This panel can only be collapsed by clicking icon",
-  //             children: <p>{text}</p>,
-  //           },
-  //         ]}
-  //       />
-  //       <Collapse
-  //         collapsible="disabled"
-  //         items={[
-  //           {
-  //             key: "1",
-  //             label: "This panel can't be collapsed",
-  //             children: <p>{text}</p>,
-  //           },
-  //         ]}
-  //       />
-  //     </Space>
-  //   );
+
+  function renderCasts() {
+    if (casts.length === 0) {
+      return <p>No cast information available.</p>;
+    }
+    return images.map(({ name, profile_path, character }, index) => (
+      <li key={index}>
+        <div className="poster">
+          <img
+            src={`${ImageBasic.wUrl}${profile_path}`}
+            alt={`Backdrop ${index + 1}`}
+          />
+        </div>
+        <div className="info">
+          <h4>{name}</h4>
+          <h3>{character}</h3>
+        </div>
+      </li>
+    ));
+  }
+
+  function renderImages() {
+    return (
+      <ul>
+        {images.map((image, index) => (
+          <li key={index}>
+            <img
+              src={`${ImageBasic.wUrl}${image.file_path}`}
+              alt={`Backdrop ${index + 1}`}
+            />
+          </li>
+        ))}
+      </ul>
+    );
+  }
+  function renderFarm() {
+    return (
+      <Space direction="vertical">
+        <Collapse
+          collapsible="header"
+          defaultActiveKey={["1"]}
+          items={[
+            {
+              key: "1",
+              label: "Casts",
+              children: renderCasts(),
+            },
+          ]}
+        />
+        <Collapse
+          collapsible="icon"
+          defaultActiveKey={["1"]}
+          items={[
+            {
+              key: "1",
+              label: "Images",
+              children: renderImages(),
+            },
+          ]}
+        />
+        <Collapse
+          collapsible="icon"
+          defaultActiveKey={["1"]}
+          items={[
+            {
+              key: "1",
+              label: "Similars",
+              children: "",
+            },
+          ]}
+        />
+      </Space>
+    );
+  }
 
   return (
-    <>
-      <div>hello</div>
-    </>
+    <Fragment>
+      <div className="accordion">
+        <div className="wrapper">
+          <div className="accordionWrapper">
+            {loading ? <p>Loading...</p> : <ul>{renderFarm()}</ul>}
+          </div>
+        </div>
+      </div>
+    </Fragment>
   );
 }
