@@ -13,6 +13,7 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 import MovieListByGenre from "../../ListByGenres/FilterList";
 import renderMovieGenres from "../../../Utils/Genres/genres";
+import { Spin } from "antd";
 
 export default function Holder(props) {
   const { id } = useParams();
@@ -62,7 +63,13 @@ export default function Holder(props) {
   }
 
   function renderPopularMovies() {
-    if (!movie) return "";
+    if (loading) {
+      return <Spin size="large" />;
+    }
+
+    if (!movie || movie.length === 0) {
+      return <p>No popular movies found</p>;
+    }
     return movie.map(
       ({
         title,
@@ -202,11 +209,4 @@ export default function Holder(props) {
       </div>
     </Style>
   );
-}
-{
-  /* <FontAwesomeIcon
-  className="icon"
-  icon={faImdb}
-  style={{ color: `${colorPallet.primaryColor}` }}
-/>; */
 }

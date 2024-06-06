@@ -40,6 +40,10 @@ export default function Router() {
       element: <ShowAllMovies />,
     },
     {
+      path: "/m/top-rated",
+      element: <ShowAllMovies />,
+    },
+    {
       path: "/m/trending",
       element: <ShowAllMovies time_window="day" />,
     },

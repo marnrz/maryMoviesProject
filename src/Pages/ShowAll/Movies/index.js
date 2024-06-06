@@ -19,6 +19,9 @@ export default function ShowAllMovies({ time_window }) {
           serverApiUrl={`trending/movie/${time_window}`}
         />
       )}
+      {location.pathname === "/m/top-rated" && (
+        <AllMovieList title="TopRated Movies" serverApiUrl="movie/top_rated" />
+      )}
     </>
   );
 }

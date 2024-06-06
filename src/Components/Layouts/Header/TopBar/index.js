@@ -1,15 +1,7 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Style from "./style";
 import { Link } from "react-router-dom";
-import { Space, Switch } from "antd";
-import {
-  UserAddOutlined,
-  LoginOutlined,
-  MoonOutlined,
-  SunOutlined,
-} from "@ant-design/icons";
-import { useState } from "react";
-import Toggle from "../../../../Utils/Toggle/toggle";
+import { Space } from "antd";
+import { UserAddOutlined, LoginOutlined } from "@ant-design/icons";
 
 export default function TopBar() {
   return (

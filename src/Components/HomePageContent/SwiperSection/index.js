@@ -57,7 +57,9 @@ export default function SwiperTopRated() {
       <div className="topRated relative z-2">
         <div className="wrapperFull">
           <div className="topRatedFull ">
-            <h2 className="title">TopRated Movies</h2>
+            <Link to="/m/top-rated">
+              <h2 className="title">TopRated Movies</h2>
+            </Link>
             {loading ? (
               <p>Loading...</p>
             ) : (

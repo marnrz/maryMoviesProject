@@ -126,7 +126,11 @@ function renderFarm() {
   return menuItem.map((item, index) => {
     return (
       <li key={index}>
-        <a target={item.isBlank ? "_blank" : "_self"} href={item.link}>
+        <a
+          target={item.isBlank ? "_blank" : "_self"}
+          href={item.link}
+          rel="noreferrer"
+        >
           {item.title}
         </a>
       </li>
@@ -138,7 +142,7 @@ function available() {
     return (
       <li key={index}>
         <a href={item.link}>
-          <img src={item.icon} />
+          <img src={item.icon} alt="" />
           {item.title}
         </a>
       </li>
@@ -149,7 +153,11 @@ function socialMedia() {
   return socialIcons.map((item, index) => {
     return (
       <li key={index}>
-        <a target={item.isBlank ? "_blank" : "_self"} href={item.link}>
+        <a
+          target={item.isBlank ? "_blank" : "_self"}
+          href={item.link}
+          rel="noreferrer"
+        >
           <img src={item.icon} alt="" />
         </a>
       </li>
@@ -160,7 +168,7 @@ function legal() {
   return legalItems.map((item, index) => {
     return (
       <li key={index}>
-        <a href={item.link} target="_blank">
+        <a href={item.link} target="_blank" rel="noreferrer">
           {item.title}
         </a>
       </li>

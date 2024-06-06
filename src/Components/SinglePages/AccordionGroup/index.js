@@ -1,9 +1,11 @@
 import { Collapse, Space } from "antd";
 import api from "../../../Utils/Api/api";
-import { Fragment, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import ImageBasic from "../../../Utils/ImageBase/imageBase";
-import AllMovieList from "../../AllMovies/MovieLIst";
+import Style from "./style";
+import renderMovieItem from "../../../Utils/DownloadIcon/movie";
+import { Year } from "../../../Utils/DateChanger/date";
 
 export default function Accordion() {
   const { id } = useParams();
@@ -22,11 +24,12 @@ export default function Accordion() {
         params: {
           language: "en-US",
           append_to_response: "credits,similar,images",
+          include_image_language: "en,null",
         },
       });
-      setCasts(response.data.casts.cast.slice(0, 14));
-      setImages(response.data.images.backdrops.slice(0, 14));
-      setSimilar(response.data.similar.results.slice(0, 9));
+      setCasts(response.data.credits.cast.slice(0, 6));
+      setImages(response.data.images.backdrops.slice(0, 6));
+      setSimilar(response.data.similar.results.slice(0, 6));
       console.log(response);
       setLoading(false);
     } catch (error) {
@@ -39,85 +42,118 @@ export default function Accordion() {
     if (casts.length === 0) {
       return <p>No cast information available.</p>;
     }
-    return images.map(({ name, profile_path, character }, index) => (
-      <li key={index}>
-        <div className="poster">
-          <img
-            src={`${ImageBasic.wUrl}${profile_path}`}
-            alt={`Backdrop ${index + 1}`}
-          />
-        </div>
-        <div className="info">
-          <h4>{name}</h4>
-          <h3>{character}</h3>
-        </div>
-      </li>
-    ));
+    return (
+      <ul className="list flex wrap gap-2">
+        {casts.map(({ name, profile_path, character }, index) => (
+          <li key={index}>
+            <div className="poster">
+              <img
+                src={`${ImageBasic.wUrl}${profile_path}`}
+                alt={`Backdrop ${index + 1}`}
+              />
+            </div>
+            <div className="info">
+              <h4>{name}</h4>
+              <h5>{character}</h5>
+            </div>
+          </li>
+        ))}{" "}
+      </ul>
+    );
   }
 
   function renderImages() {
     return (
-      <ul>
+      <ul className="imageList flex wrap gap-2">
         {images.map((image, index) => (
           <li key={index}>
-            <img
-              src={`${ImageBasic.wUrl}${image.file_path}`}
-              alt={`Backdrop ${index + 1}`}
-            />
+            <div className="poster">
+              {" "}
+              <img
+                src={`${ImageBasic.wUrl}${image.file_path}`}
+                alt={`Backdrop ${index + 1}`}
+              />
+            </div>
           </li>
         ))}
       </ul>
     );
   }
+  function renderSimilar() {
+    if (similar.length === 0) {
+      return <p>No similar movies available.</p>;
+    }
+    return (
+      <ul className="list flex wrap gap-2">
+        {similar.map(({ id: movieId, title, poster_path, name }, index) => (
+          <Link to={`/m/${id}`}>
+            <li key={movieId}>
+              <div className="poster">
+                <img
+                  src={`${ImageBasic.wUrl}${poster_path}`}
+                  alt={`Backdrop ${index + 1}`}
+                />
+              </div>
+              <div className="info">
+                <h4>
+                  {title || name}
+                  <Year />
+                </h4>
+              </div>
+            </li>
+          </Link>
+        ))}{" "}
+      </ul>
+    );
+  }
   function renderFarm() {
     return (
-      <Space direction="vertical">
-        <Collapse
-          collapsible="header"
-          defaultActiveKey={["1"]}
-          items={[
-            {
-              key: "1",
-              label: "Casts",
-              children: renderCasts(),
-            },
-          ]}
-        />
-        <Collapse
-          collapsible="icon"
-          defaultActiveKey={["1"]}
-          items={[
-            {
-              key: "1",
-              label: "Images",
-              children: renderImages(),
-            },
-          ]}
-        />
-        <Collapse
-          collapsible="icon"
-          defaultActiveKey={["1"]}
-          items={[
-            {
-              key: "1",
-              label: "Similars",
-              children: "",
-            },
-          ]}
-        />
-      </Space>
+      <div className="collaps">
+        <Space direction="vertical">
+          <Collapse
+            collapsible="header"
+            items={[
+              {
+                key: "1",
+                label: <h2>Casts</h2>,
+                children: renderCasts(),
+              },
+            ]}
+          />
+          <Collapse
+            collapsible="icon"
+            items={[
+              {
+                key: "1",
+                label: <h2>Images</h2>,
+                children: renderImages(),
+              },
+            ]}
+          />
+          <Collapse
+            collapsible="icon"
+            items={[
+              {
+                key: "1",
+                label: <h2>Similars</h2>,
+                children: renderSimilar(),
+              },
+            ]}
+          />
+        </Space>
+      </div>
     );
   }
 
   return (
-    <Fragment>
+    <Style>
       <div className="accordion">
         <div className="wrapper">
           <div className="accordionWrapper">
-            {loading ? <p>Loading...</p> : <ul>{renderFarm()}</ul>}
+            {loading ? <p>Loading...</p> : renderFarm()}
           </div>
         </div>
       </div>
-    </Fragment>
+    </Style>
   );
 }

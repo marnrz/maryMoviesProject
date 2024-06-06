@@ -51,7 +51,7 @@ export default function Trending({ title, serverApiUrl }) {
         vote_average,
       }) => (
         <li className="col-2 relative" key={id}>
-          <Link to="#">
+          <Link to="/m/trending">
             {poster_path == null ? (
               <div className="noPic relative">
                 <span className="iconPlace absolute">

@@ -1,7 +1,7 @@
 import Layout from "../../Components/Layouts";
 import { colorPallet } from "../../Theme/commonStyle";
 import Style from "./style";
-import { Collapse, Space } from "antd";
+import { Collapse } from "antd";
 
 export default function AboutUs() {
   const questionItems = [

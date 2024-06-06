@@ -8,7 +8,7 @@ html {
     overflow-x: hidden;
 }
 body {
-    font-family: "PT Sans", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 400;
     font-style: normal;
 }

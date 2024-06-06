@@ -5,7 +5,7 @@ import { faCameraRotate } from "@fortawesome/free-solid-svg-icons";
 import Style from "./style";
 import { Link } from "react-router-dom";
 import api from "../../../Utils/Api/api";
-import { Pagination, Space } from "antd";
+import { Pagination, Space, Spin } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
 import { colorPallet } from "../../../Theme/commonStyle";
 import Layout from "../../Layouts";
@@ -80,7 +80,13 @@ export default function AllMovieList({ title, serverApiUrl, time }) {
   //   Render
 
   function renderMovieItem() {
-    if (moviesDataItem === null || moviesDataItem === undefined) return "";
+    if (loading) {
+      return <Spin size="large" />;
+    }
+
+    if (!moviesDataItem || moviesDataItem.length === 0) {
+      return <p>No movies found</p>;
+    }
     return moviesDataItem.map(
       ({
         id,
@@ -93,7 +99,7 @@ export default function AllMovieList({ title, serverApiUrl, time }) {
       }) => {
         return (
           <li className="col-2 relative" key={id}>
-            <Link to="#">
+            <Link to={`/m/${id}`}>
               {poster_path == null ? (
                 <div className="noPic relative">
                   <span className="iconPlace absolute">

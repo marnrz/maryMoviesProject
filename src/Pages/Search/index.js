@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, createSearchParams, useSearchParams } from "react-router-dom";
 import TopBar from "../../Components/Layouts/Header/TopBar";
 import Background from "../../Components/Layouts/Header/Background";
@@ -86,7 +86,7 @@ export default function SearchPage() {
       ({ id, poster_path, title, release_date, vote_average }) => {
         return (
           <li className="col-2 relative" key={id}>
-            <Link to="#">
+            <Link to={`/m/${id}`}>
               {poster_path == null ? (
                 <div className="noPic relative">
                   <span className="iconPlace absolute">

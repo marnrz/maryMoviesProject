@@ -18,9 +18,9 @@ export function renderMovieGenres(genre_ids) {
     99: "Documentary",
     14: "Fantasy",
   };
-  return genre_ids.map((genre_id) => (
-    <p key={genre_id}>{genreMap[genre_id]}</p>
-  ));
+  return genre_ids
+    .slice(0, 3)
+    .map((genre_id) => <p key={genre_id}>{genreMap[genre_id]}</p>);
 }
 export function renderSingleGenres(genres, i) {
   if (genres === undefined) return;

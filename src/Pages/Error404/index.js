@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
-
 import { Button } from "antd";
 import Header from "../../Components/Layouts/Header";
-import { Fragment } from "react";
 import Style from "./style";
 
 export default function Error404() {
