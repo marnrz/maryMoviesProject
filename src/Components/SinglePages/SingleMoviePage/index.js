@@ -29,6 +29,7 @@ export default function HeroSinglePage() {
   useEffect(() => {
     setData(listItem);
   }, [genresData, castData, directorData]);
+
   async function getMovieDetailsApi() {
     setLoading(true);
     try {

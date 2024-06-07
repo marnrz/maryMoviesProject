@@ -39,13 +39,13 @@ export default function SwiperTopRated() {
     return moviesData.map(({ id, poster_path, title }) => (
       <SwiperSlide key={id} className="swiperSlide">
         <Link to={`/m/${id}`}>
-          <div className="topRatedBox">
+          <div className="topRatedBox relative">
             <img
               className="poster"
               src={`${ImageBasic.wUrl}${poster_path}`}
               alt={`Movie ${id}`}
             />
-            <p className="text">{title}</p>
+            <p className="text absolute textCenter">{title}</p>
           </div>
         </Link>
       </SwiperSlide>

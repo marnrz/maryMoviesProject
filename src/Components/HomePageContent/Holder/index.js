@@ -111,10 +111,7 @@ export default function Holder(props) {
                     </span>
                   </div>
                   <div className="imdb">
-                    <a
-                      href="https://www.imdb.com/title/${imdb_id}/"
-                      target="_blank"
-                    >
+                    <a href="#">
                       <h3>IMDb</h3>
                     </a>
                   </div>

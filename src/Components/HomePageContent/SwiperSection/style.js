@@ -43,19 +43,32 @@ export const Style = styled.div`
           height: 250px;
           cursor: pointer;
           .topRatedBox {
+            &::before {
+              content: "";
+              position: absolute;
+              top: 0;
+              left: 0;
+              background-color: rgba(0, 0, 0, 0.3);
+              width: 100%;
+              height: 100%;
+            }
             width: 100%;
             height: 100%;
+
             .poster {
               display: block;
               width: 100%;
-              height: auto;
+              height: 100%;
             }
             .text {
-              background-color: ${colorPallet.darkSecondaryBackgroundColor};
+              left: 0%;
+              top: 90%;
               color: #fff;
               padding: 10px;
               font-weight: 700;
-              text-align: center;
+              width: 100%;
+              height: 100%;
+              font-size: 1.2rem;
             }
           }
         }

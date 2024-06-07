@@ -31,9 +31,9 @@ export default function Accordion() {
           include_image_language: "en,null",
         },
       });
-      setCasts(response.data.credits.cast.slice(0, 8));
+      setCasts(response.data.credits.cast.slice(0, 6));
       setImages(response.data.images.backdrops.slice(0, 6));
-      setSimilar(response.data.similar.results.slice(0, 8));
+      setSimilar(response.data.similar.results.slice(0, 6));
       console.log(response);
       setLoading(false);
     } catch (error) {
@@ -89,41 +89,26 @@ export default function Accordion() {
       return <p>No similar movies available.</p>;
     }
     return (
-      <Swiper
-        className="mySwiper"
-        navigation={true}
-        modules={[Navigation]}
-        slidesPerView={"4"}
-      >
-        <ul className="list flex wrap gap-2">
-          {similar.map(({ id: movieId, title, poster_path, name }, index) => (
-            <SwiperSlide key={movieId} className="swiperSlide ">
-              {console.log("Current Slide Data:", {
-                movieId,
-                title,
-                poster_path,
-                name,
-              })}{" "}
-              <Link to={`/m/${id}`}>
-                <li key={movieId}>
-                  <div className="poster">
-                    <img
-                      src={`${ImageBasic.wUrl}${poster_path}`}
-                      alt={`Backdrop ${index + 1}`}
-                    />
-                  </div>
-                  <div className="info">
-                    <h4>
-                      {title || name}
-                      <Year />
-                    </h4>
-                  </div>
-                </li>
-              </Link>
-            </SwiperSlide>
-          ))}
-        </ul>
-      </Swiper>
+      <ul className="list flex wrap gap-2">
+        {similar.map(({ id: movieId, title, poster_path, name }, index) => (
+          <Link className="link" to="#">
+            <li key={movieId}>
+              <div className="poster">
+                <img
+                  src={`${ImageBasic.wUrl}${poster_path}`}
+                  alt={`Backdrop ${index + 1}`}
+                />
+              </div>
+              <div className="info">
+                <h4>
+                  {title || name}
+                  <Year />
+                </h4>
+              </div>
+            </li>
+          </Link>
+        ))}
+      </ul>
     );
   }
   function renderFarm() {

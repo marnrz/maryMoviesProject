@@ -100,6 +100,7 @@ export const Style = styled.div`
               .overview,
               .genres {
                 font-size: 1.2rem;
+                line-height: 1.5;
               }
             }
           }

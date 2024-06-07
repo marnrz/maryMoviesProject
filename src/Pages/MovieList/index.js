@@ -9,8 +9,9 @@ export default function MovieList() {
   console.log("Current path:", location.pathname); // Debugging log
   return (
     <Layout>
+      {/* movies */}
       {location.pathname === "/m" && (
-        <MovieItems title="All MovieShows" serverApiUrl="discover/movie" />
+        <MovieItems title="All Movies" serverApiUrl="discover/movie" />
       )}
       {location.pathname === "/m" && (
         <Trending title="Trending Movies" serverApiUrl="trending/movie" />
@@ -18,6 +19,7 @@ export default function MovieList() {
       {location.pathname === "/m" && (
         <UpComming title="UpComming Movies" serverApiUrl="movie/upcoming" />
       )}{" "}
+      {/* genres */}
       {location.pathname === "/genres" && (
         <MovieItems title="Comedy" serverApiUrl="discover/movie" />
       )}
@@ -36,6 +38,16 @@ export default function MovieList() {
       {location.pathname === "/genres" && (
         <MovieItems title="History" serverApiUrl="discover/movie" />
       )}
+      {/* series */}
+      {location.pathname === "/s" && (
+        <MovieItems title="All TvShows" serverApiUrl="discover/tv" />
+      )}
+      {location.pathname === "/s" && (
+        <Trending title="Trending TvShows" serverApiUrl="trending/tv" />
+      )}
+      {location.pathname === "/s" && (
+        <UpComming title="UpComming TvShows" serverApiUrl="tv/on_the_air" />
+      )}{" "}
     </Layout>
   );
 }

@@ -32,4 +32,5 @@ export function renderSingleGenres(genres, i) {
     );
   });
 }
+
 export default renderMovieGenres;

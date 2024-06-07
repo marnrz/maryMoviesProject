@@ -51,9 +51,10 @@ export default function MovieItems({ title, serverApiUrl }) {
         vote_average,
         first_air_date,
       }) => {
+        // const link = title ? `/m/${id}` : `/s/${id}`;
         return (
           <li className=" col-2 relative" key={id}>
-            <Link to={`/m/${id}`}>
+            <Link to={`m/${id}`}>
               {poster_path == null ? (
                 <div className="noPic relative">
                   <span className="iconPlace absolute">
@@ -85,7 +86,7 @@ export default function MovieItems({ title, serverApiUrl }) {
       }
     );
   }
-
+  // const itemLink = title ? "/all-movies" : "/all-series";
   return (
     <Style>
       <div className="movieItem relative z-2 mt-6">
@@ -96,7 +97,7 @@ export default function MovieItems({ title, serverApiUrl }) {
             <div className="movieItemWrapper ">
               <div className="titleBox flex gap-3 alignCenter">
                 <h2 className="title ">{title}</h2>
-                <Link to="/all-movies" className="viewMore flex gap-1">
+                <Link to={"/all-movies"} className="viewMore flex gap-1">
                   <span className="textViewMore">View More</span>
                   <span className="icon">
                     <FontAwesomeIcon icon={faAngleRight} />

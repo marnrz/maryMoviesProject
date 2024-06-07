@@ -11,7 +11,7 @@ import { colorPallet } from "../../../Theme/commonStyle";
 import Layout from "../../Layouts";
 import { Year } from "../../../Utils/DateChanger/date";
 
-export default function AllMovieList({ title, serverApiUrl, time }) {
+export default function AllMovieList({ title, time }) {
   const { id, name } = useParams();
   const [moviesDataItem, setMoviesDataItem] = useState([]);
   const [totalResult, setTotalResult] = useState(0);
@@ -26,7 +26,7 @@ export default function AllMovieList({ title, serverApiUrl, time }) {
   async function getMovieApi() {
     try {
       setLoading(true);
-      const response = await api.get(serverApiUrl, {
+      const response = await api.get(`movie/${id}`, {
         params: {
           language: "en-US",
           page: currntPage,
@@ -99,9 +99,12 @@ export default function AllMovieList({ title, serverApiUrl, time }) {
         first_air_date,
         vote_average,
       }) => {
+        const itemTitle = title || name;
+        const itemDate = release_date || first_air_date;
+        // const itemLink = title ? `/m/${id}` : `/s/${id}`;
         return (
           <li className="col-2  mb-3 relative" key={id}>
-            <Link to={`/m/${id}`}>
+            <Link to={`m/${id}`}>
               {poster_path == null ? (
                 <div className="noPic relative">
                   <span className="iconPlace absolute">
@@ -112,7 +115,7 @@ export default function AllMovieList({ title, serverApiUrl, time }) {
                 <div className="cover relative">
                   <img
                     src={`${ImageBasic.wUrl}${poster_path}`}
-                    alt={title || name}
+                    alt={itemTitle}
                   />
                   <div className="coverHover">
                     <div className="right">
@@ -144,8 +147,8 @@ export default function AllMovieList({ title, serverApiUrl, time }) {
                 </div>
               )}
               <h3 className=" name mt-4 mb-1 flex gap-1 justifyCenter textCenter">
-                {title || name}
-                <Year dateString={release_date || first_air_date} />
+                {itemTitle}
+                <Year dateString={itemDate} />
               </h3>
             </Link>
           </li>

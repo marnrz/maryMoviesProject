@@ -33,7 +33,7 @@ export default function MenuBar() {
     {
       title: "Genres",
       icon: faUsersRectangle,
-      link: "#",
+      link: "/genres",
     },
     {
       title: "Contact",

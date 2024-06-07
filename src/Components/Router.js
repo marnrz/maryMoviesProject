@@ -4,10 +4,10 @@ import ContactUs from "../Pages/ContactUs";
 import AboutUs from "../Pages/AboutUs";
 import Error404 from "../Pages/Error404";
 import MovieList from "../Pages/MovieList";
-import SeriesList from "../Pages/SeriesList";
-import SearchPage from "../Pages/Search";
 import SingleMovie from "../Pages/SingleMovie";
 import ShowAllMovies from "../Pages/ShowAll/Movies";
+import Search from "./SearchPage";
+import SignUp from "../Pages/SignUp";
 
 export default function Router() {
   const router = createBrowserRouter([
@@ -24,12 +24,16 @@ export default function Router() {
       element: <ContactUs />,
     },
     {
+      path: "/sign-up",
+      element: <SignUp />,
+    },
+    {
       path: "/m",
       element: <MovieList />,
     },
     {
       path: "/s",
-      element: <SeriesList />,
+      element: <MovieList />,
     },
     {
       path: "/genres",
@@ -57,7 +61,7 @@ export default function Router() {
     },
     {
       path: "/search",
-      element: <SearchPage />,
+      element: <Search />,
     },
     {
       path: "/m/:id",

@@ -23,7 +23,7 @@ export default function ShowAllMovies({ time_window, name }) {
         <AllMovieList title="TopRated Movies" serverApiUrl="movie/top_rated" />
       )}
       {location.pathname === `/genres/${name}` && (
-        <AllMovieList title="All Movies" serverApiUrl="discover/movie" />
+        <AllMovieList title={name} serverApiUrl="discover/movie" />
       )}
     </>
   );

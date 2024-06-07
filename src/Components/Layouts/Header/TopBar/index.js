@@ -23,7 +23,7 @@ export default function TopBar() {
             <div className="usersSide flex alignCenter justifyCenter gap-5">
               <div className="btnSignIn flex alignCenter justifyCenter textCenter gap-1">
                 <Link
-                  to="#"
+                  to="/sign-up"
                   className="btn flex alignCenter justifyCenter textCenter gap-1"
                 >
                   <p>Sign In</p>
@@ -34,7 +34,7 @@ export default function TopBar() {
               </div>
               <div className="btnSignUp flex alignCenter justifyCenter textCenter gap-1">
                 <Link
-                  to="#"
+                  to="/sign-up"
                   className="btn flex alignCenter justifyCenter gap-1"
                 >
                   <p>Sign Up</p>

@@ -34,7 +34,7 @@ export const Style = styled.div`
       li {
         .noPic {
           width: 240px;
-          height: 180px;
+          height: 140px;
           border: 1px solid ${colorPallet.primaryColor};
           background-color: rgba(255, 255, 255, 0.8);
           .iconPlace {
@@ -77,6 +77,7 @@ export const Style = styled.div`
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: top center;
           }
           .icon {
             width: 30px;
