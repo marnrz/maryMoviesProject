@@ -96,27 +96,6 @@ export default function Holder(props) {
                 <p className="date mb-2">
                   <DateChanger dateString={release_date} />
                 </p>
-                <div className="genres mb-2">
-                  <p className="flex alignCenter gap-2">
-                    <FontAwesomeIcon
-                      icon={faFolder}
-                      style={{ color: `${colorPallet.primaryColor}` }}
-                    />
-                    <b>Genres:</b>
-                    {renderMovieGenres(genre_ids).map((genre, index) => (
-                      <span
-                        key={index}
-                        className="flex justifyBetween alignCenter"
-                      >
-                        {genre}
-                        {index < genre_ids.length - 1 && ", "}
-                      </span>
-                    ))}
-                  </p>
-                </div>
-                <div className="overview">
-                  <p>{overview}</p>
-                </div>
               </div>
               <div className="right">
                 <div className="imdbHolder flex justifyBetween gap-2">
@@ -141,10 +120,34 @@ export default function Holder(props) {
                   </div>
                 </div>
               </div>
+
               <div className="subtitlesItem absolute">
                 <div className="ccIcon absolute">
                   <FontAwesomeIcon className="icon" icon={faClosedCaptioning} />
                 </div>
+              </div>
+            </div>
+            <div>
+              <div className="genres mb-2">
+                <p className="flex alignCenter gap-2">
+                  <FontAwesomeIcon
+                    icon={faFolder}
+                    style={{ color: `${colorPallet.primaryColor}` }}
+                  />
+                  <b>Genres:</b>
+                  {renderMovieGenres(genre_ids).map((genre, index) => (
+                    <span
+                      key={index}
+                      className="flex justifyBetween alignCenter"
+                    >
+                      {genre}
+                      {index < genre_ids.length - 1 && ", "}
+                    </span>
+                  ))}
+                </p>
+              </div>
+              <div className="overview">
+                <p>{overview}</p>
               </div>
             </div>
           </div>

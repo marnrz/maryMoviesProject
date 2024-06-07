@@ -50,7 +50,6 @@ export const Style = styled.div`
         margin: 30px 0;
         .textResult {
           color: ${colorPallet.darkTextColor};
-          font-size: 2.5rem;
         }
         .resultList {
           .noResult {
@@ -63,7 +62,7 @@ export const Style = styled.div`
             .noPic {
               width: 150px;
               height: 200px;
-              border: 1px solid ${colorPallet.primaryColor};
+              border: 2px solid ${colorPallet.primaryColor};
               border-radius: ${defaultCss.primaryBorderRadius};
               background-color: rgba(255, 255, 255, 0.8);
               .iconPlace {
@@ -100,7 +99,7 @@ export const Style = styled.div`
               }
               width: 150px;
               height: 200px;
-              border: 1px solid #fff;
+              border: 2px solid #fff;
               border-radius: ${defaultCss.primaryBorderRadius};
               img {
                 width: 100%;

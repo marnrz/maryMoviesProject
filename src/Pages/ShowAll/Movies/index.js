@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import AllMovieList from "../../../Components/AllMovies/MovieLIst";
 
-export default function ShowAllMovies({ time_window }) {
+export default function ShowAllMovies({ time_window, name }) {
   const location = useLocation();
   console.log("Current path:", location.pathname); // Debugging log
   return (
@@ -21,6 +21,9 @@ export default function ShowAllMovies({ time_window }) {
       )}
       {location.pathname === "/m/top-rated" && (
         <AllMovieList title="TopRated Movies" serverApiUrl="movie/top_rated" />
+      )}
+      {location.pathname === `/genres/${name}` && (
+        <AllMovieList title="All Movies" serverApiUrl="discover/movie" />
       )}
     </>
   );

@@ -14,33 +14,29 @@ export const Style = styled.div`
             margin-top: 25px;
             padding: 15px;
             .coverBox {
-              width: 25%;
+              width: 30%;
               img {
                 border-radius: ${defaultCss.primaryBorderRadius};
-                width: 150px;
+                width: 90%;
                 height: auto;
               }
             }
             .movieDetails {
-              width: 75%;
+              width: 70%;
               color: ${colorPallet.darkTextColor};
               min-height: 200px;
               height: auto;
               padding-right: 30px;
-              margin-left: 10px;
+
               .titleContent {
                 .left {
+                  width: 75%;
                   .date {
                     font-size: 1.4rem;
                   }
-                  .genres {
-                    font-size: 1.4rem;
-                  }
-                  .overview {
-                    font-size: 1.2rem;
-                  }
                 }
                 .right {
+                  width: 20%;
                   .imdbHolder {
                     .rateNum {
                       font-size: 1.2rem;
@@ -100,6 +96,10 @@ export const Style = styled.div`
                     }
                   }
                 }
+              }
+              .overview,
+              .genres {
+                font-size: 1.2rem;
               }
             }
           }

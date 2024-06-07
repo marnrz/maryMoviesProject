@@ -2,6 +2,7 @@ import {
   faFilm,
   faHeadphones,
   faHome,
+  faMagnifyingGlass,
   faUsersRectangle,
   faVideo,
 } from "@fortawesome/free-solid-svg-icons";
@@ -39,6 +40,11 @@ export default function MenuBar() {
       icon: faHeadphones,
       link: "/contact-us",
     },
+    {
+      title: "Search",
+      icon: faMagnifyingGlass,
+      link: "/search",
+    },
   ];
 
   function renderMenuItems() {
@@ -63,16 +69,6 @@ export default function MenuBar() {
             <ul className="list justifyBetween gap-6 flex">
               {renderMenuItems()}
             </ul>
-            <Input
-              className="searchInput"
-              placeholder="Search"
-              addonBg="rgba(0, 0, 0, 0.02)"
-              prefix={
-                <SearchOutlined
-                  style={{ color: `${colorPallet.primaryColor}` }}
-                />
-              }
-            />
           </div>
         </div>
       </div>

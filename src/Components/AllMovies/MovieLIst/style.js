@@ -85,8 +85,8 @@ export const Style = styled.div`
                 }
                 span {
                   position: absolute;
-                  top: 45%;
-                  left: -28%;
+                  top: 47%;
+                  left: -66%;
                   font-weight: 700;
                   letter-spacing: 1px;
                   font-size: 1.2rem;

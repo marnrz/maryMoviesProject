@@ -48,7 +48,7 @@ export const Style = styled.div`
             .poster {
               display: block;
               width: 100%;
-              height: 100%;
+              height: auto;
             }
             .text {
               background-color: ${colorPallet.darkSecondaryBackgroundColor};

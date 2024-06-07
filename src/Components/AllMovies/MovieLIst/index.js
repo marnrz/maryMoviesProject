@@ -12,6 +12,7 @@ import Layout from "../../Layouts";
 import { Year } from "../../../Utils/DateChanger/date";
 
 export default function AllMovieList({ title, serverApiUrl, time }) {
+  const { id, name } = useParams();
   const [moviesDataItem, setMoviesDataItem] = useState([]);
   const [totalResult, setTotalResult] = useState(0);
   const [currntPage, setCurentPage] = useState(1);
@@ -19,7 +20,7 @@ export default function AllMovieList({ title, serverApiUrl, time }) {
 
   useEffect(() => {
     getMovieApi(time);
-  }, [currntPage]);
+  }, [currntPage, id]);
 
   //   Api
   async function getMovieApi() {
@@ -29,6 +30,7 @@ export default function AllMovieList({ title, serverApiUrl, time }) {
         params: {
           language: "en-US",
           page: currntPage,
+          width_genres: id,
         },
       });
       console.log(response);

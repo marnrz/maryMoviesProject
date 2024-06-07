@@ -31,7 +31,12 @@ export const Style = styled.div`
           }
         }
       }
-      .searchInput {
+      .search {
+        .searchText {
+          color: ${colorPallet.primaryColor};
+        }
+      }
+      /* .searchInput {
         font-family: "Montserrat", sans-serif;
         font-weight: 400;
         font-style: normal;
@@ -56,7 +61,7 @@ export const Style = styled.div`
             font-style: normal;
           }
         }
-      }
+      } */
     }
   }
 `;

@@ -14,36 +14,21 @@ import Trending from "../../Components/AllMovies/AllMovieItems/Trending";
 
 export default function SearchPage() {
   const [moviesData, setMoviesData] = useState([]);
-  const [showMovie, setShowMovie] = useState([]);
   const [loading, setLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState("");
   const queryParam = searchParams.get("query");
 
   useEffect(() => {
-    getMovieApi();
-
     if (queryParam !== null && queryParam !== "") {
       request(queryParam);
     }
   }, []);
 
-  const getMovieApi = async () => {
-    if (searchQuery !== "") {
-      const response = await api.get("/discover/movie", {
-        params: {
-          query: searchQuery,
-        },
-      });
-      setShowMovie(response.data.results);
-    }
-  };
-
   const request = async (value) => {
-    setSearchQuery(value);
+    setLoading(true);
     try {
-      setLoading(true);
-      const request = await api.get("/search/movie", {
+      const response = await api.get("/search/movie", {
         params: {
           query: value,
         },
@@ -53,18 +38,20 @@ export default function SearchPage() {
           query: value,
         })
       );
-      setMoviesData(request.data.results.slice(0, 20));
+      setMoviesData(response.data.results.slice(0, 12));
       setLoading(false);
     } catch (e) {
-      console.log("error");
+      console.log("Error fetching movies:", e);
       setLoading(false);
     }
   };
 
-  const onType = async (event) => {
-    console.log(event);
-    console.log(event.target.value);
-    request(event.target.value);
+  const onType = (event) => {
+    const value = event.target.value;
+    setSearchParams({ query: value });
+    if (value !== "") {
+      request(value);
+    }
   };
 
   function renderSearch() {
@@ -73,7 +60,6 @@ export default function SearchPage() {
         return (
           <div className="noResult ">
             <h2 className="textNoResult ">
-              {" "}
               No results found for <b>{`${searchQuery}`}</b>!
             </h2>
           </div>
@@ -118,6 +104,7 @@ export default function SearchPage() {
       }
     );
   }
+
   return (
     <Style>
       <Background />
@@ -126,19 +113,21 @@ export default function SearchPage() {
         <div className="wrapperFull">
           <div className="heroWrapper relative z-2 mt-6">
             <div className="searchBox flex column alignCenter justifyCenter mb-6">
-              <h1 className="title mb-5  textCenter">
+              <h1 className="title mb-5 textCenter">
                 Millions of movies, TV shows and people to discover. Explore
                 now.
               </h1>
-              <div className="Box relative">
+              <div className="Box relative mb-5">
                 <Input
                   className="input"
                   placeholder="Search for a movie, tv show, person..."
+                  onChange={onType}
+                  defaultValue={queryParam || ""}
                 />
                 <Button
                   className="absolute button"
                   type="primary"
-                  onClick={onType}
+                  onClick={() => request(queryParam)}
                 >
                   Show All
                 </Button>
@@ -146,12 +135,11 @@ export default function SearchPage() {
             </div>
             <div className="searchContent">
               <div className="result">
-                {searchParams.get("query") &&
-                  searchParams.get("query") !== "" && (
-                    <h1 className="textResult textCenter mb-5">
-                      results for {searchParams.get("query")}{" "}
-                    </h1>
-                  )}
+                {queryParam && queryParam !== "" && (
+                  <h1 className="textResult textCenter mb-5">
+                    Results for {queryParam}
+                  </h1>
+                )}
                 <ul className="resultList flex wrap gap-1">{renderSearch()}</ul>
               </div>
             </div>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Style from "./style";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleRight,
@@ -13,12 +13,13 @@ import DateChanger from "../../../../Utils/DateChanger/date";
 import api from "../../../../Utils/Api/api";
 
 export default function MovieItems({ title, serverApiUrl }) {
+  const { id, name } = useParams();
   const [moviesDataItem, setMoviesDataItem] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     getMovieApi();
-  }, []);
+  }, [id, serverApiUrl]);
   async function getMovieApi(page = 2) {
     try {
       setLoading(true);
@@ -26,6 +27,7 @@ export default function MovieItems({ title, serverApiUrl }) {
         params: {
           language: "en-US",
           page: page,
+          with_genres: id,
         },
       });
       console.log(response);

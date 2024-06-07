@@ -32,6 +32,10 @@ export default function Router() {
       element: <SeriesList />,
     },
     {
+      path: "/genres",
+      element: <MovieList />,
+    },
+    {
       path: "/all-movies",
       element: <ShowAllMovies />,
     },
@@ -46,6 +50,10 @@ export default function Router() {
     {
       path: "/m/trending",
       element: <ShowAllMovies time_window="day" />,
+    },
+    {
+      path: "/genres/:name",
+      element: <ShowAllMovies />,
     },
     {
       path: "/search",
