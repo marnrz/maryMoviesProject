@@ -59,22 +59,20 @@ export default function MenuBar() {
     <Style>
       <div className="menuBar relative z-2">
         <div className="wrapper">
-          <div className="menuWrapper absolute flex justifyBetween alignCenter">
+          <div className="menuWrapper  flex justifyBetween alignCenter">
             <ul className="list justifyBetween gap-6 flex">
               {renderMenuItems()}
             </ul>
-            <Link to="/search">
-              <Input
-                className="input"
-                placeholder="Search"
-                addonBg="rgba(0, 0, 0, 0.02)"
-                prefix={
-                  <SearchOutlined
-                    style={{ color: `${colorPallet.primaryColor}` }}
-                  />
-                }
-              />
-            </Link>
+            <Input
+              className="searchInput"
+              placeholder="Search"
+              addonBg="rgba(0, 0, 0, 0.02)"
+              prefix={
+                <SearchOutlined
+                  style={{ color: `${colorPallet.primaryColor}` }}
+                />
+              }
+            />
           </div>
         </div>
       </div>

@@ -46,7 +46,7 @@ export default function UpComming({ title, serverApiUrl }) {
       }) => {
         return (
           <li className="col-2 relative" key={id}>
-            <Link to="#">
+            <Link to={`/m/${id}`}>
               {poster_path == null ? (
                 <div className="noPic relative">
                   <span className="iconPlace absolute">
@@ -86,7 +86,7 @@ export default function UpComming({ title, serverApiUrl }) {
       <div className="upComming relative z-2 mt-6">
         <div className="wrapperFull">
           {loading ? (
-            <p>please wait...</p>
+            <div className="spinner"></div>
           ) : (
             <div className="upCommingWrapper ">
               <div className="titleBox flex gap-3 alignCenter">

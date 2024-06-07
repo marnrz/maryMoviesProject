@@ -134,7 +134,6 @@ export default function SearchPage() {
                 <Input
                   className="input"
                   placeholder="Search for a movie, tv show, person..."
-                  onChange={onType}
                 />
                 <Button
                   className="absolute button"

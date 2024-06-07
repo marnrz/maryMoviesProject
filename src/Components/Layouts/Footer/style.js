@@ -17,7 +17,7 @@ export const Style = styled.div`
     .left {
       .contact {
         justify-content: flex-start;
-        gap: 10px;
+        gap: 8px;
         margin-left: 40px;
         li {
           a {
@@ -30,17 +30,17 @@ export const Style = styled.div`
           }
         }
       }
-      span {
+      .available {
         color: #fff;
         font-size: 1.4rem;
         font-weight: 500;
-        gap: 3px;
+        gap: 5px;
         margin: 15px 0 0 40px;
         ul {
           li {
             a {
               color: #fff;
-              font-size: 1.4rem;
+              font-size: 0.8rem;
               padding: 3px;
               img {
                 padding-right: 2px;

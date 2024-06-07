@@ -183,7 +183,7 @@ export default function Footer() {
           <div className="footerWrapper flex justifyBetween alignCenter">
             <div className="left">
               <ul className="contact flex">{renderFarm()}</ul>
-              <span className="flex">
+              <span className=" available flex alignCenter justifyBetween">
                 available on: <ul className="flex">{available()}</ul>
               </span>
             </div>
@@ -194,7 +194,9 @@ export default function Footer() {
               </ul>
               <span className="flex">
                 ©MaryMovie{" "}
-                <ul className="legal flex justifyBetween">{legal()}</ul>
+                <ul className="legal flex justifyBetween alignCenter">
+                  {legal()}
+                </ul>
               </span>
             </div>
           </div>

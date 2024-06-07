@@ -7,8 +7,8 @@ export const Style = styled.div`
     height: 70px;
     width: ${defaultCss.fullWidth};
     .menuWrapper {
-      top: 10px;
-      gap: 160px;
+      padding: 15px 0;
+      gap: 120px;
       .list {
         li {
           padding: 5px;
@@ -31,8 +31,8 @@ export const Style = styled.div`
           }
         }
       }
-      .input {
-        font-family: "PT Sans", sans-serif;
+      .searchInput {
+        font-family: "Montserrat", sans-serif;
         font-weight: 400;
         font-style: normal;
         min-width: 230px;
@@ -42,14 +42,19 @@ export const Style = styled.div`
         border-radius: ${defaultCss.secondaryBorderRadius};
         border-color: ${colorPallet.primaryColor};
         background-color: ${colorPallet.darkPrimaryBackgroundColor};
-        &::placeholder {
-          background-color: ${colorPallet.darkSecondaryBackgroundColor};
-          font-family: "PT Sans", sans-serif;
-          font-weight: 400;
-          font-style: normal;
-        }
-        &:focus {
-          color: ${colorPallet.primaryColor};
+        input {
+          &::placeholder {
+            color: #4f4f4f;
+            font-family: "Montserrat", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+          }
+          &:focus {
+            color: ${colorPallet.primaryColor};
+            font-family: "Montserrat", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+          }
         }
       }
     }

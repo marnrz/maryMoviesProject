@@ -7,6 +7,8 @@ import { Year } from "../../../Utils/DateChanger/date";
 import renderRateColor from "../../../Utils/CollorRating";
 import { renderSingleGenres } from "../../../Utils/Genres/genres";
 import { colorPallet } from "../../../Theme/commonStyle";
+import { Flex, Spin, Typography } from "antd";
+import expand from "../../../Utils/Expand/expand";
 
 export default function HeroSinglePage() {
   const { id } = useParams();
@@ -18,6 +20,8 @@ export default function HeroSinglePage() {
   const [authorData, setAuthorData] = useState([]);
   const [regionData, setRegionData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [rows, setRows] = useState(1);
+  const [overviewExpanded, setOverviewExpanded] = useState(false);
 
   useEffect(() => {
     getMovieDetailsApi();
@@ -48,6 +52,19 @@ export default function HeroSinglePage() {
       setLoading(false);
     }
   }
+
+  const toggleExpand = () => {
+    console.log("Toggling expand. Current expanded state:", overviewExpanded);
+    expand(
+      rows,
+      moviesData.length,
+      setRows,
+      setOverviewExpanded,
+      overviewExpanded
+    );
+    console.log("New rows count:", rows);
+    console.log("New expanded state:", !overviewExpanded);
+  };
 
   const listItem = [
     {
@@ -171,8 +188,8 @@ export default function HeroSinglePage() {
       return (
         <li key={id || index} className="listHolder flex gap-2 alignCenter">
           <span className="icon">{icon}</span>
-          <span className="labItem">{labItem}</span>
-          <span className="renderItem flex alignCenter">{renderItem}</span>
+          <h4 className="labItem">{labItem}</h4>
+          <p className="renderItem flex alignCenter">{renderItem}</p>
         </li>
       );
     });
@@ -207,53 +224,74 @@ export default function HeroSinglePage() {
           backgroundImage: `url(${ImageBasic.wUrl}${backdrop_path})`,
         }}
       >
-        <div className="wrapper">
-          <div className="heroHolderWrapper relative flex aligncenter justifyBetween">
-            <div className="coverBox mt-8">
-              <img src={`${ImageBasic.wUrl}${poster_path}`} alt={title} />
-            </div>
-            <div className="meta mt-8 ">
-              <div className="headMeta flex justifyBetween wrap  ">
-                <div className="left">
-                  <h1 className="title">
-                    {title}
-                    <Year dateString={release_date} />
-                  </h1>
-                </div>
-                <div className="right">
-                  <div className="imdbHolder">
-                    <div className="rateNum">
-                      <strong
-                        className={`voteColor ${renderRateColor(
-                          vote_average || 0
-                        )}`}
-                      >
-                        {vote_average ? vote_average.toFixed(1) : "N/A"}
-                      </strong>
-                      <small className="ten">/10</small>
-                      <span className="voteNum flex">
-                        <b>Votes:</b> {vote_count || "N/A"}
-                      </span>
-                    </div>
-                    <div className="imdb">
-                      <a
-                        href={`https://www.imdb.com/title/${imdb_id}/`}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        <h3>IMDb</h3>
-                      </a>
+        <Flex className="wrapper">
+          {loading ? (
+            <Spin size="large" />
+          ) : (
+            <div className="heroHolderWrapper relative flex aligncenter justifyBetween">
+              <div className="coverBox mt-8">
+                <img src={`${ImageBasic.wUrl}${poster_path}`} alt={title} />
+              </div>
+              <div className="meta mt-8 ">
+                <div className="headMeta flex justifyBetween wrap  ">
+                  <div className="left">
+                    <h1 className="title">
+                      {title}
+                      <Year dateString={release_date} />
+                    </h1>
+                  </div>
+                  <div className="right">
+                    <div className="imdbHolder">
+                      <div className="rateNum">
+                        <strong
+                          className={`voteColor ${renderRateColor(
+                            vote_average || 0
+                          )}`}
+                        >
+                          {vote_average ? vote_average.toFixed(1) : "N/A"}
+                        </strong>
+                        <small className="ten">/10</small>
+                        <span className="voteNum flex">
+                          <b>Votes:</b> {vote_count || "N/A"}
+                        </span>
+                      </div>
+                      <div className="imdb">
+                        <a
+                          href={`https://www.imdb.com/title/${imdb_id}/`}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          <h3>IMDb</h3>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="metaItem">
-                <ul className="list ">{renderFarm()}</ul>
-                <div className="plotText">{overview}</div>
+                <div className="metaItem">
+                  <ul className="list ">{renderFarm()}</ul>
+                  <div>
+                    <Typography.Paragraph className="plotText ">
+                      {overviewExpanded && moviesData.overview
+                        ? moviesData.overview
+                        : `${
+                            moviesData.overview
+                              ? moviesData.overview.substring(0, 100)
+                              : ""
+                          }...`}
+                      <span
+                        className="pl-2"
+                        onClick={() => setOverviewExpanded(!overviewExpanded)}
+                        style={{ color: "white", cursor: "pointer" }}
+                      >
+                        {overviewExpanded ? "Show Less" : "Show More"}
+                      </span>
+                    </Typography.Paragraph>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
+          )}
+        </Flex>
       </div>
     </Style>
   );

@@ -89,7 +89,7 @@ export default function MovieItems({ title, serverApiUrl }) {
       <div className="movieItem relative z-2 mt-6">
         <div className="wrapperFull">
           {loading ? (
-            <p>please wait...</p>
+            <div className="spinner"></div>
           ) : (
             <div className="movieItemWrapper ">
               <div className="titleBox flex gap-3 alignCenter">

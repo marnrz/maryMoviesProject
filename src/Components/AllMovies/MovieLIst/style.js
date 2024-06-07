@@ -36,6 +36,7 @@ export const Style = styled.div`
               width: 100%;
               height: 260px;
               border-radius: ${defaultCss.primaryBorderRadius};
+              object-fit: cover;
             }
             .coverHover {
               position: absolute;
@@ -111,8 +112,11 @@ export const Style = styled.div`
           }
           .name {
             color: ${colorPallet.darkTextColor};
+            font-size: 1.3rem;
           }
         }
+      }
+      .customPagination {
       }
     }
   }

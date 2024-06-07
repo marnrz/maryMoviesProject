@@ -96,7 +96,9 @@ const Style = styled.div`
         .metaItem {
           .list {
             .listHolder {
-              font-size: 15px;
+              width: 75%;
+              font-size: 1.5rem;
+              margin-bottom: 23px;
               .icon {
                 color: ${colorPallet.primaryColor};
                 .iconDe {
@@ -117,7 +119,7 @@ const Style = styled.div`
           .plotText {
             font-size: 15px;
             font-weight: 400;
-            line-height: 22px;
+            line-height: 24px;
             color: ${colorPallet.darkTextColor};
           }
         }

@@ -2,6 +2,19 @@ import styled from "styled-components";
 import { colorPallet, defaultCss } from "../../../../Theme/commonStyle";
 
 export const Style = styled.div`
+  .spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border-left-color: ${colorPallet.primaryColor};
+    animation: spin 1s linear infinite;
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  }
   .trendingWrapper {
     .titleBox {
       .title {

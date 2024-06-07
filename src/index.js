@@ -16,6 +16,11 @@ root.render(
         token: {
           colorPrimary: colorPallet.primaryColor,
           itemBg: colorPallet.primaryColor,
+          colorText: colorPallet.primaryColor,
+          colorTextPlaceholder: colorPallet.primaryColor,
+          colorBgTextHover: "#4f4f4f",
+          // colorBgContainer: "#4f4f4f",
+          margin: 10,
         },
       }}
     >

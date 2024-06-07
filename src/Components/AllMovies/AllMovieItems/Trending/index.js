@@ -51,7 +51,7 @@ export default function Trending({ title, serverApiUrl }) {
         vote_average,
       }) => (
         <li className="col-2 relative" key={id}>
-          <Link to="/m/trending">
+          <Link to={`/m/${id}`}>
             {poster_path == null ? (
               <div className="noPic relative">
                 <span className="iconPlace absolute">
@@ -91,7 +91,7 @@ export default function Trending({ title, serverApiUrl }) {
       <div className="trending relative z-2 mt-6">
         <div className="wrapperFull">
           {loading ? (
-            <p>Please wait...</p>
+            <div className="spinner"></div>
           ) : (
             <div className="trendingWrapper">
               {location.pathname !== "/search" && (
