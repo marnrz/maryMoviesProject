@@ -125,12 +125,7 @@ export const Style = styled.div`
                 .coverBox {
                   width: 190px;
                   height: 60px;
-                  img :nth-child(1) {
-                    border-radius: 10px 10px 0 0;
-                    width: 190px;
-                    height: 160px;
-                    object-fit: cover;
-                  }
+
                   img {
                     border-radius: 10px 10px 0 0;
                     width: 100%;
@@ -146,6 +141,11 @@ export const Style = styled.div`
                     font-weight: 700;
                     text-align: center;
                   }
+                }
+              }
+              li:nth-child(1) {
+                .coverBox {
+                  height: 200px;
                 }
               }
             }

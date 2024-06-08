@@ -10,6 +10,7 @@ import { colorPallet } from "../../../Theme/commonStyle";
 import { Flex, Spin, Typography } from "antd";
 import expand from "../../../Utils/Expand/expand";
 import runTime from "../../../Utils/TimeChanger";
+import renderAge from "../../../Utils/Age";
 
 export default function HeroSinglePage() {
   const { id } = useParams();
@@ -19,9 +20,9 @@ export default function HeroSinglePage() {
   const [genresData, setGenresData] = useState([]);
   const [directorData, setDiretorData] = useState([]);
   const [authorData, setAuthorData] = useState([]);
+  const [ageData, setAgeData] = useState([]);
   const [regionData, setRegionData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [rows, setRows] = useState(1);
   const [overviewExpanded, setOverviewExpanded] = useState(false);
 
   useEffect(() => {
@@ -38,7 +39,7 @@ export default function HeroSinglePage() {
       const response = await api.get(`movie/${id}`, {
         params: {
           language: "en-US",
-          append_to_response: "credits",
+          append_to_response: "credits,release_dates",
         },
       });
       setMoviesData(response.data);
@@ -48,6 +49,7 @@ export default function HeroSinglePage() {
       );
       setAuthorData(response.data.credits.crew.slice(0, 3));
       setGenresData(response.data);
+      setAgeData(response.data.release_dates.results);
       setLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error.message);
@@ -155,6 +157,26 @@ export default function HeroSinglePage() {
       labItem: "Run time:",
       renderItem: `${runTime(moviesData.runtime)} `,
     },
+    {
+      icon: (
+        <svg className=" iconDe">
+          <use xlinkHref="#circular_age">
+            <symbol
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 162.978 162.978"
+              id="circular_age"
+              fill={`${colorPallet.primaryColor}`}
+            >
+              {" "}
+              <path d="M162.978 101.101l-19.611-39.224-19.611 39.224h13.209c-8.315 25.958-32.633 44.826-61.324 44.826-35.529 0-64.438-28.908-64.438-64.438 0-35.529 28.909-64.438 64.438-64.438 27.376 0 50.764 17.19 60.077 41.325l6.44-12.882c-12.813-23.595-37.82-39.649-66.512-39.649C33.936 5.844 0 39.778 0 81.489c0 41.708 33.936 75.645 75.645 75.645 34.924 0 64.331-23.809 72.997-56.032h14.336z"></path>{" "}
+              <path d="M35.486 96.582h7.084l2.15-7.749h8.645l2.332 7.749h7.345L53.68 66.39h-8.96l-9.234 30.192zM47.494 77.32c.493-1.749.941-4.034 1.39-5.823h.088c.449 1.789.988 4.036 1.527 5.823l1.882 6.413h-6.675l1.788-6.413zm34.243-5.598c3.311 0 5.371.583 7.029 1.294l1.436-5.466c-1.479-.715-4.482-1.48-8.377-1.48-9.901 0-17.2 5.731-17.253 15.769-.042 4.434 1.48 8.372 4.26 10.978 2.778 2.688 6.763 4.076 12.277 4.076 3.98 0 7.975-.985 10.075-1.701V79.289H79.943v5.331h4.665v6.313c-.542.274-1.798.449-3.365.449-5.604 0-9.497-3.677-9.497-9.904 0-6.534 4.296-9.756 9.991-9.756zm33.438.271v-5.598H96.539v30.187h19.265v-5.593h-12.41v-7.168h11.113v-5.56h-11.113v-6.268z"></path>{" "}
+            </symbol>
+          </use>
+        </svg>
+      ),
+      labItem: "Age Rating:",
+      renderItem: renderAge(ageData),
+    },
     // {
     //   icon: (
     //     <svg class=" iconDe">
@@ -215,16 +237,6 @@ export default function HeroSinglePage() {
     });
   }
 
-  // function renderRegion() {
-  //   return regionData.map(({ name, id }, index) => {
-  //     return (
-  //       <p key={id} className="box ">
-  //         {production_countries.name}
-  //         {index < name.length - 1 && ", "}
-  //       </p>
-  //     );
-  //   });
-  // }
   return (
     <Style>
       <div

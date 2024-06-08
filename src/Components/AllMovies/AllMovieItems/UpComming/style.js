@@ -21,11 +21,15 @@ export const Style = styled.div`
         font-size: 2rem;
       }
       .viewMore {
-        gap: 0.5rem;
         font-size: 1.3rem;
         color: ${colorPallet.darkTextColor};
         &:hover {
-          color: ${colorPallet.primaryColor};
+          .textViewMore {
+            color: ${colorPallet.primaryColor};
+          }
+          .icon {
+            color: ${colorPallet.primaryColor};
+          }
         }
       }
     }

@@ -25,7 +25,12 @@ export const Style = styled.div`
         font-size: 1.3rem;
         color: ${colorPallet.darkTextColor};
         &:hover {
-          color: ${colorPallet.primaryColor};
+          .textViewMore {
+            color: ${colorPallet.primaryColor};
+          }
+          .icon {
+            color: ${colorPallet.primaryColor};
+          }
         }
       }
     }

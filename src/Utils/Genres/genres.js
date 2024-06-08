@@ -19,7 +19,7 @@ export function renderMovieGenres(genre_ids) {
     14: "Fantasy",
   };
   return genre_ids
-    .slice(0, 3)
+    .slice(0, 2)
     .map((genre_id) => <p key={genre_id}>{genreMap[genre_id]}</p>);
 }
 export function renderSingleGenres(genres, i) {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Style from "./style";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleRight,
@@ -9,29 +9,31 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import ImageBasic from "../../../../Utils/ImageBase/imageBase";
 import renderRateColor from "../../../../Utils/CollorRating";
-import DateChanger, { Year } from "../../../../Utils/DateChanger/date";
+import DateChanger from "../../../../Utils/DateChanger/date";
 import api from "../../../../Utils/Api/api";
 
-export default function MovieItems({ title, serverApiUrl }) {
-  const { id, name } = useParams();
+export default function MovieItems({ title, serverApiUrl, genreId }) {
+  const { id } = useParams();
+  const location = useLocation();
   const [moviesDataItem, setMoviesDataItem] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     getMovieApi();
-  }, [id, serverApiUrl]);
-  async function getMovieApi(page = 2) {
+  }, [id, serverApiUrl, genreId]);
+
+  async function getMovieApi(page = 1) {
     try {
       setLoading(true);
       const response = await api.get(serverApiUrl, {
         params: {
           language: "en-US",
           page: page,
-          with_genres: id,
+          with_genres: genreId || id, // Use genreId if provided, otherwise use id
         },
       });
       console.log(response);
-      setMoviesDataItem(response.data.results.slice(0, 12));
+      setMoviesDataItem(response.data.results.slice(0, 6));
       setLoading(false);
     } catch (e) {
       console.log("Error fetching movies:", e);
@@ -40,7 +42,7 @@ export default function MovieItems({ title, serverApiUrl }) {
   }
 
   function renderMovieItems() {
-    if (moviesDataItem === null || moviesDataItem === undefined) return "";
+    if (!moviesDataItem) return null;
     return moviesDataItem.map(
       ({
         id,
@@ -51,10 +53,14 @@ export default function MovieItems({ title, serverApiUrl }) {
         vote_average,
         first_air_date,
       }) => {
-        // const link = title ? `/m/${id}` : `/s/${id}`;
+        // Determine the base path for the links
+        const basePath = location.pathname.startsWith("/genres")
+          ? "/m"
+          : location.pathname;
+
         return (
-          <li className=" col-2 relative mb-4" key={id}>
-            <Link to={`${id}`}>
+          <li className="col-2 relative mb-4" key={id}>
+            <Link to={`${basePath}/${id}`}>
               {poster_path == null ? (
                 <div className="noPic relative">
                   <span className="iconPlace absolute">
@@ -63,13 +69,16 @@ export default function MovieItems({ title, serverApiUrl }) {
                 </div>
               ) : (
                 <div className="poster relative">
-                  <img src={`${ImageBasic.wUrl}${poster_path}`} alt={title} />
+                  <img
+                    src={`${ImageBasic.wUrl}${poster_path}`}
+                    alt={title || name}
+                  />
                   <span className="icon absolute">
                     <FontAwesomeIcon className="playIcon" icon={faCirclePlay} />
                   </span>
                 </div>
               )}
-              <div className="infoTitle ">
+              <div className="infoTitle">
                 <h3 className="mt-3 mb-2">{title || name}</h3>
                 <p>
                   <DateChanger dateString={release_date || first_air_date} />
@@ -81,63 +90,29 @@ export default function MovieItems({ title, serverApiUrl }) {
       }
     );
   }
-  // const itemLink = title ? "/all-movies" : "/all-series";
+
   return (
     <Style>
       <div className="movieItem relative z-2 mt-6">
-        <div className="wrapperFull">
+        <div className="wrapper">
           {loading ? (
             <div className="spinner"></div>
           ) : (
-            <div className="movieItemWrapper ">
+            <div className="movieItemWrapper">
               <div className="titleBox flex gap-3 alignCenter">
-                <h2 className="title ">{title}</h2>
-                <Link to={"/all-movies"} className="viewMore flex gap-1">
+                <h2 className="title">{title}</h2>
+                <Link to="/all-movies" className="viewMore flex gap-1">
                   <span className="textViewMore">View More</span>
                   <span className="icon">
                     <FontAwesomeIcon icon={faAngleRight} />
                   </span>
                 </Link>
               </div>
-
-              <ul className="list flex wrap  mt-4">{renderMovieItems()}</ul>
-
-              {/* {App()} */}
+              <ul className="list flex wrap mt-4">{renderMovieItems()}</ul>
             </div>
           )}
         </div>
       </div>
     </Style>
   );
-}
-{
-  /* <li className=" col-2 relative" key={id}>
-<Link to={`${id}`}>
-  {poster_path == null ? (
-    <div className="noPic relative">
-      <span className="iconPlace absolute">
-        <FontAwesomeIcon className="icon" icon={faCameraRetro} />
-      </span>
-    </div>
-  ) : (
-    <div className="poster relative">
-      <img src={`${ImageBasic.wUrl}${poster_path}`} alt={title} />
-      <strong
-        className={`voteColor ${renderRateColor(
-          vote_average
-        )} absolute`}
-      >
-        {vote_average.toFixed(1) * 10}%
-      </strong>
-      <span className="icon absolute">
-        <FontAwesomeIcon className="playIcon" icon={faCirclePlay} />
-      </span>
-    </div>
-  )}
-  <h2 className="mt-4 mb-1">{title || name}</h2>
-  <p>
-    <DateChanger dateString={release_date || first_air_date} />
-  </p>
-</Link>
-</li> */
 }

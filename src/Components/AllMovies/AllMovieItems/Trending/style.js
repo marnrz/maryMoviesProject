@@ -16,21 +16,40 @@ export const Style = styled.div`
     }
   }
   .trendingWrapper {
-    .titleBox {
-      .title {
-        font-size: 2rem;
-      }
-      .viewMore {
-        font-size: 1.3rem;
-        color: ${colorPallet.darkTextColor};
-        &:hover {
-          color: ${colorPallet.primaryColor};
-        }
-      }
-    }
     .trendingBtn {
       gap: 20px;
-      .title {
+      .titleBox {
+        .title {
+          font-size: 2rem;
+          color: ${colorPallet.darkTextColor};
+        }
+        .viewMore {
+          font-size: 1.3rem;
+          color: ${colorPallet.darkTextColor};
+          &:hover {
+            color: ${colorPallet.primaryColor};
+          }
+        }
+      }
+      .selector {
+        .anchor {
+          background-color: #fff;
+          border: 1px solid ${colorPallet.primaryColor};
+          border-radius: ${defaultCss.secondaryBorderRadius};
+          padding: 5px 10px;
+          text-align: center;
+          .text {
+            a {
+              color: ${colorPallet.primaryColor};
+            }
+          }
+          &:hover {
+            background-color: ${colorPallet.primaryColor};
+            a {
+              color: ${colorPallet.darkTextColor};
+            }
+          }
+        }
       }
       .btn {
         border-radius: ${defaultCss.primaryBorderRadius};
@@ -128,16 +147,10 @@ export const Style = styled.div`
         }
         .infoTitle {
           color: ${colorPallet.darkTextColor};
-          width: 90%;
+          width: 100%;
           height: 100%;
         }
       }
-    }
-    h2,
-    h3,
-    p,
-    span {
-      color: ${colorPallet.darkTextColor};
     }
   }
 `;

@@ -89,14 +89,17 @@ export default function UpComming({ title, serverApiUrl }) {
   return (
     <Style>
       <div className="upComming relative z-2 mt-6">
-        <div className="wrapperFull">
+        <div className="wrapper">
           {loading ? (
             <div className="spinner"></div>
           ) : (
             <div className="upCommingWrapper ">
               <div className="titleBox flex gap-3 alignCenter">
                 <h2 className="title ">{title}</h2>
-                <Link to="/m/upcomming" className="viewMore flex alignCenter">
+                <Link
+                  to="/m/upcomming"
+                  className="viewMore flex alignCenter gap-1"
+                >
                   <span className="textViewMore">View More</span>
                   <span className="icon">
                     <FontAwesomeIcon icon={faAngleRight} />

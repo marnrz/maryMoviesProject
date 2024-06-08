@@ -19,7 +19,7 @@ const Style = styled.div`
     background-color: #050505;
     background-size: cover;
     height: 100vh;
-    min-height: 500px;
+    min-height: 600px;
     .heroHolderWrapper {
       .coverBox {
         width: 30%;

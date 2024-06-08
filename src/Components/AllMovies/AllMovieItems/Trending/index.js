@@ -11,6 +11,7 @@ import ImageBasic from "../../../../Utils/ImageBase/imageBase";
 import renderRateColor from "../../../../Utils/CollorRating";
 import DateChanger from "../../../../Utils/DateChanger/date";
 import api from "../../../../Utils/Api/api";
+import renderMovieGenres from "../../../../Utils/Genres/genres";
 
 export default function Trending({ title, serverApiUrl }) {
   const [moviesData, setMoviesData] = useState([]);
@@ -49,6 +50,7 @@ export default function Trending({ title, serverApiUrl }) {
         name,
         first_air_date,
         vote_average,
+        genre_ids,
       }) => (
         <li className="col-2 relative" key={id}>
           <Link to={`/m/${id}`}>
@@ -78,8 +80,15 @@ export default function Trending({ title, serverApiUrl }) {
             )}
             <div className="infoTitle">
               <h3 className="mt-4 mb-1">{title || name}</h3>
-              <p>
+              <p className="mb-1">
                 <DateChanger dateString={release_date || first_air_date} />
+              </p>
+              <p className="flex">
+                {renderMovieGenres(genre_ids).map((genre, index) => (
+                  <span key={index} className="flex justifyBetween alignCenter">
+                    {genre} {index < genre_ids.length - 1 && ", "}
+                  </span>
+                ))}
               </p>
             </div>
           </Link>
@@ -91,7 +100,7 @@ export default function Trending({ title, serverApiUrl }) {
   return (
     <Style>
       <div className="trending relative z-2 mt-6">
-        <div className="wrapperFull">
+        <div className="wrapper">
           {loading ? (
             <div className="spinner"></div>
           ) : (
@@ -109,14 +118,14 @@ export default function Trending({ title, serverApiUrl }) {
                   </div>
                   <div className="selector">
                     <div className="anchor">
-                      <h3>
+                      <h3 className="text">
                         <Link to="#" onClick={() => getApi("day")}>
                           Today
                         </Link>
                       </h3>
                     </div>
                     <div className="anchor">
-                      <h3>
+                      <h3 className="text">
                         <Link to="#" onClick={() => getApi("week")}>
                           This Week
                         </Link>
