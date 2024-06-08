@@ -3,6 +3,9 @@ import { colorPallet, defaultCss } from "../../../Theme/commonStyle";
 
 export const Style = styled.div`
   .accordion {
+    width: 100%;
+    height: 90vh;
+    min-height: 400px;
     .accordionWrapper {
       .collaps {
         .ant-space {
@@ -19,7 +22,7 @@ export const Style = styled.div`
               .list {
                 height: 300px;
                 li {
-                  width: 100%;
+                  width: 153px;
                   height: 100%;
                   background-color: ${colorPallet.darkSecondaryBackgroundColor};
                   border-radius: ${defaultCss.primaryBorderRadius};

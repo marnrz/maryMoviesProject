@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { colorPallet, defaultCss } from "../../../Theme/commonStyle";
 
 const Style = styled.div`
-  padding: 30px 0;
+  padding: 20px 0;
   .heroHolder {
     &:before {
       position: absolute;
@@ -19,7 +19,7 @@ const Style = styled.div`
     background-color: #050505;
     background-size: cover;
     height: 100vh;
-    min-height: 600px;
+    min-height: 500px;
     .heroHolderWrapper {
       .coverBox {
         width: 30%;
