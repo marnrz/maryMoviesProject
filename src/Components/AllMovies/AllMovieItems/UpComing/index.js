@@ -1,68 +1,58 @@
 import { useEffect, useState } from "react";
-import Style from "./style";
-import { Link, useParams, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faAngleRight,
-  faCameraRetro,
-  faCirclePlay,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCameraRetro, faCirclePlay } from "@fortawesome/free-solid-svg-icons";
+import { Link, useLocation } from "react-router-dom";
+import Style from "./style";
 import ImageBasic from "../../../../Utils/ImageBase/imageBase";
-import renderRateColor from "../../../../Utils/CollorRating";
 import DateChanger from "../../../../Utils/DateChanger/date";
 import api from "../../../../Utils/Api/api";
+import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import renderMovieGenres from "../../../../Utils/Genres/genres";
 
-export default function MovieItems({ title, serverApiUrl, genreId }) {
-  const { id } = useParams();
-  const location = useLocation();
-  const [moviesDataItem, setMoviesDataItem] = useState([]);
+export default function UpComing({ title, serverApiUrl }) {
+  const [moviesData, setMoviesData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
-    getMovieApi();
-  }, [id, serverApiUrl, genreId]);
+    getUpComingApi();
+  }, []);
 
-  async function getMovieApi(page = 1) {
+  async function getUpComingApi() {
     try {
       setLoading(true);
       const response = await api.get(serverApiUrl, {
         params: {
-          language: "en-US",
-          page: page,
-          with_genres: genreId || id, // Use genreId if provided, otherwise use id
+          language: "en - US",
+          page: "2",
         },
       });
+      setMoviesData(response.data.results.slice(0, 4));
       console.log(response);
-      setMoviesDataItem(response.data.results.slice(0, 6));
       setLoading(false);
     } catch (e) {
-      console.log("Error fetching movies:", e);
       setLoading(false);
     }
   }
 
-  function renderMovieItems() {
-    if (!moviesDataItem) return null;
-    return moviesDataItem.map(
+  // Construct the dynamic link based on the current URL
+  const viewSinglePage = location.pathname.startsWith("/s") ? "/s/" : "/m/";
+
+  function renderUpComingMovie() {
+    if (moviesData === null || moviesData === undefined) return "";
+    return moviesData.map(
       ({
         id,
         poster_path,
         title,
-        name,
         release_date,
-        genre_ids,
-        vote_average,
+        name,
         first_air_date,
+        genre_ids,
       }) => {
-        // Determine the base path for the links
-        const basePath = location.pathname.startsWith("/genres")
-          ? "/m"
-          : location.pathname;
-
         return (
-          <li className="col-2 relative mb-4" key={id}>
-            <Link to={`${basePath}/${id}`}>
+          <li className="col-3 relative" key={id}>
+            <Link to={`${viewSinglePage}${id}`}>
               {poster_path == null ? (
                 <div className="noPic relative">
                   <span className="iconPlace absolute">
@@ -103,25 +93,33 @@ export default function MovieItems({ title, serverApiUrl, genreId }) {
     );
   }
 
+  // Construct the dynamic link based on the current URL
+  const viewMoreLink = location.pathname.startsWith("/s")
+    ? "/s/upcoming"
+    : "/m/upcoming";
+
   return (
     <Style>
-      <div className="movieItem relative z-2 mt-6">
+      <div className="UpComing relative z-2 mt-6">
         <div className="wrapper">
           {loading ? (
             <div className="spinner"></div>
           ) : (
-            <div className="movieItemWrapper">
+            <div className="UpComingWrapper">
               <div className="titleBox flex gap-3 alignCenter">
-                <h2 className="title">{title}</h2>
-                <Link to="/all-movies" className="viewMore flex gap-1">
+                <h2 className="title ">{title}</h2>
+                <Link
+                  to={viewMoreLink}
+                  className="viewMore flex alignCenter gap-1"
+                >
                   <span className="textViewMore">View More</span>
                   <span className="icon">
                     <FontAwesomeIcon icon={faAngleRight} />
                   </span>
                 </Link>
               </div>
-              <ul className="list flex wrap mt-4 justifyBetween">
-                {renderMovieItems()}
+              <ul className="list flex mt-4 justifyBetween ">
+                {renderUpComingMovie()}
               </ul>
             </div>
           )}

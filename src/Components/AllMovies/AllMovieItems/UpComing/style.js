@@ -15,14 +15,13 @@ export const Style = styled.div`
       }
     }
   }
-  .upComming {
+  .UpComing {
     .titleBox {
       .title {
         font-size: 2rem;
+        color: ${colorPallet.darkTextColor};
       }
       .viewMore {
-        font-size: 1.3rem;
-        color: ${colorPallet.darkTextColor};
         &:hover {
           .textViewMore {
             color: ${colorPallet.primaryColor};
@@ -31,10 +30,11 @@ export const Style = styled.div`
             color: ${colorPallet.primaryColor};
           }
         }
+        font-size: 1.3rem;
+        color: ${colorPallet.darkTextColor};
       }
     }
     .list {
-      gap: 80px;
       li {
         .noPic {
           width: 240px;
@@ -70,11 +70,10 @@ export const Style = styled.div`
               color: ${colorPallet.primaryColor};
             }
             border: 1px solid ${colorPallet.primaryColor};
-            min-width: 250px;
             transition: all 0.2s ease-out;
-            transform: scale(1);
+            transform: scale(1.1);
           }
-          width: 240px;
+          width: 100%;
           height: 140px;
           border: 1px solid #fff;
           img {
@@ -89,6 +88,7 @@ export const Style = styled.div`
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            color: #fff;
             .playIcon {
               font-size: 3rem;
               width: 100%;
@@ -102,12 +102,6 @@ export const Style = styled.div`
           height: 100%;
         }
       }
-    }
-    h2,
-    h3,
-    p,
-    span {
-      color: ${colorPallet.darkTextColor};
     }
   }
 `;

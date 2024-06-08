@@ -11,109 +11,62 @@ import { colorPallet } from "../../../Theme/commonStyle";
 import Layout from "../../Layouts";
 import { Year } from "../../../Utils/DateChanger/date";
 
-export default function AllMovieList({ title, time, serverApiUrl }) {
+export default function AllSeriesList({ title, time, serverApiUrl }) {
   const { id, name } = useParams();
-  const [moviesDataItem, setMoviesDataItem] = useState([]);
+  const [seriesDataItem, setSeriesDataItem] = useState([]);
   const [totalResult, setTotalResult] = useState(0);
   const [currntPage, setCurentPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
-    getMovieApi(time);
+    getSeriesApi(time);
   }, [currntPage, id]);
 
   //   Api
-  async function getMovieApi() {
+  async function getSeriesApi() {
     try {
       setLoading(true);
       const response = await api.get(serverApiUrl, {
         params: {
           language: "en-US",
           page: currntPage,
-          width_genres: id,
+          with_genres: id,
         },
       });
       console.log(response);
-      setMoviesDataItem(response.data.results.slice(0, 12));
+      setSeriesDataItem(response.data.results.slice(0, 12));
       setTotalResult(response.data.total_pages);
       setLoading(false);
     } catch (e) {
-      console.log("Error fetching movies:", e);
+      console.log("Error fetching series:", e);
       setLoading(false);
     }
   }
 
-  // async function getUpComingApi() {
-  //   try {
-  //     setLoading(true);
-  //     const response = await api.get(serverApiUrl, {
-  //       params: {
-  //         language: "en-US",
-  //         page: currntPage,
-  //       },
-  //     });
-  //     console.log(response);
-  //     setUpComingDataItem(response.data.results.slice(0, 12));
-  //     setLoading(false);
-  //   } catch (e) {
-  //     console.log("Error fetching movies:", e);
-  //     setLoading(false);
-  //   }
-  // }
-
-  // async function getTrendingsApi(time_window) {
-  //   try {
-  //     setLoading(true);
-  //     const response = await api.get(serverApiUrl, {
-  //       params: {
-  //         language: "en-US",
-  //         page: currntPage,
-  //       },
-  //     });
-  //     console.log(response);
-  //     setTrendingsDataItem(response.data.results.slice(0, 12));
-  //     setLoading(false);
-  //   } catch (e) {
-  //     console.log("Error fetching movies:", e);
-  //     setLoading(false);
-  //   }
-  // }
-
   //   Render
-
-  function renderMovieItem() {
+  function renderSeriesItem() {
     if (loading) {
       return <Spin size="large" />;
     }
 
-    if (!moviesDataItem || moviesDataItem.length === 0) {
-      return <p>No movies found</p>;
+    if (!seriesDataItem || seriesDataItem.length === 0) {
+      return <p>No series found</p>;
     }
-    return moviesDataItem.map(
-      ({
-        id,
-        poster_path,
-        title,
-        release_date,
-        name,
-        first_air_date,
-        vote_average,
-      }) => {
-        const itemTitle = title || name;
-        const itemDate = release_date || first_air_date;
-        // const itemLink = title ? `/m/${id}` : `/s/${id}`;
+    return seriesDataItem.map(
+      ({ id, poster_path, name, first_air_date, vote_average }) => {
+        const itemTitle = name;
+        const itemDate = first_air_date;
 
-        // Determine the base path for the links
         const basePath =
           location.pathname.startsWith("/genres") ||
-          location.pathname.startsWith("/m/trending") ||
-          location.pathname.startsWith("/m/upcoming")
-            ? "/m"
+          location.pathname.startsWith("/s/trending") ||
+          location.pathname.startsWith("/s/upcoming")
+            ? "/s"
             : location.pathname;
 
         return (
-          <li className="col-2  mb-3 relative" key={id}>
+          <li className="col-2 mb-3 relative" key={id}>
             <Link to={`${basePath}/${id}`}>
               {poster_path == null ? (
                 <div className="noPic relative">
@@ -145,7 +98,7 @@ export default function AllMovieList({ title, time, serverApiUrl }) {
                         viewBox="0 0 68 341"
                       >
                         <path
-                          fill-rule="evenodd"
+                          fillRule="evenodd"
                           opacity="0.851"
                           fill="rgb(0, 0, 0)"
                           d="M0.005,-0.011 C0.041,1.280 0.072,2.584 0.072,4.005 C0.072,36.067 8.486,60.983 15.910,76.735 L57.177,133.667 C70.853,152.534 70.853,183.123 57.177,201.990 L26.908,243.749 L27.010,244.013 C27.010,244.013 0.072,278.915 0.072,336.920 C0.072,338.357 0.041,339.675 0.005,340.981 L0.005,-0.011 Z"
@@ -156,7 +109,7 @@ export default function AllMovieList({ title, time, serverApiUrl }) {
                   </div>
                 </div>
               )}
-              <h4 className=" name mt-4 mb-1 flex gap-1 justifyCenter textCenter">
+              <h4 className="name mt-4 mb-1 flex gap-1 justifyCenter textCenter">
                 {itemTitle}
                 <Year dateString={itemDate} />
               </h4>
@@ -173,7 +126,7 @@ export default function AllMovieList({ title, time, serverApiUrl }) {
     setCurentPage(page);
   }
 
-  if (moviesDataItem === null || moviesDataItem === undefined) return "";
+  if (seriesDataItem === null || seriesDataItem === undefined) return "";
   return (
     <Layout>
       {" "}
@@ -185,7 +138,7 @@ export default function AllMovieList({ title, time, serverApiUrl }) {
                 <h3>{title}</h3>
               </div>
               <div className="movieList">
-                <ul className="list flex wrap mt-6">{renderMovieItem()}</ul>
+                <ul className="list flex wrap mt-6">{renderSeriesItem()}</ul>
 
                 <div className="customPagination textCenter mt-6">
                   <Pagination

@@ -4,8 +4,10 @@ import ContactUs from "../Pages/ContactUs";
 import AboutUs from "../Pages/AboutUs";
 import Error404 from "../Pages/Error404";
 import MovieList from "../Pages/MovieList";
+import SeriesList from "../Pages/SeriesList"; // New import
 import SingleMovie from "../Pages/SingleMovie";
 import ShowAllMovies from "../Pages/ShowAll/Movies";
+import ShowAllSeries from "../Pages/ShowAll/Series"; // New import
 import Search from "./SearchPage";
 import SignUp from "../Pages/SignUp";
 
@@ -33,7 +35,7 @@ export default function Router() {
     },
     {
       path: "/s",
-      element: <MovieList />,
+      element: <SeriesList />, // New route
     },
     {
       path: "/genres",
@@ -44,21 +46,38 @@ export default function Router() {
       element: <ShowAllMovies />,
     },
     {
-      path: "/m/upcomming",
+      path: "/all-series",
+      element: <ShowAllSeries />, // New route
+    },
+    {
+      path: "/m/upcoming",
       element: <ShowAllMovies />,
+    },
+    {
+      path: "/s/upcoming",
+      element: <ShowAllSeries />, // New route
     },
     {
       path: "/m/top-rated",
       element: <ShowAllMovies />,
     },
     {
+      path: "/s/top-rated",
+      element: <ShowAllSeries />, // New route
+    },
+    {
       path: "/m/trending",
       element: <ShowAllMovies time_window="day" />,
+    },
+    {
+      path: "/s/trending",
+      element: <ShowAllSeries time_window="day" />, // New route
     },
     {
       path: "/m/:id",
       element: <SingleMovie />,
     },
+
     {
       path: "/genres/:name",
       element: <ShowAllMovies />,
@@ -67,11 +86,11 @@ export default function Router() {
       path: "/search",
       element: <Search />,
     },
-
     {
       path: "*",
       element: <Error404 />,
     },
   ]);
+
   return <RouterProvider router={router} />;
 }

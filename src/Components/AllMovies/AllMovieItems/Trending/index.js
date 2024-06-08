@@ -38,6 +38,9 @@ export default function Trending({ title, serverApiUrl }) {
     }
   }
 
+  // Construct the dynamic link based on the current URL
+  const viewSinglePage = location.pathname.startsWith("/s") ? "/s/" : "/m/";
+
   function renderTrending() {
     if (!moviesData || moviesData.length === 0)
       return <p>No trending data found.</p>;
@@ -53,7 +56,7 @@ export default function Trending({ title, serverApiUrl }) {
         genre_ids,
       }) => (
         <li className="col-2 relative" key={id}>
-          <Link to={`/m/${id}`}>
+          <Link to={`${viewSinglePage}${id}`}>
             {poster_path == null ? (
               <div className="noPic relative">
                 <span className="iconPlace absolute">
@@ -79,7 +82,7 @@ export default function Trending({ title, serverApiUrl }) {
               </div>
             )}
             <div className="infoTitle">
-              <h3 className="mt-4 mb-1">{title || name}</h3>
+              <h3 className="mt-4 mb-2">{title || name}</h3>
               <p className="mb-1">
                 <DateChanger dateString={release_date || first_air_date} />
               </p>
@@ -97,6 +100,11 @@ export default function Trending({ title, serverApiUrl }) {
     );
   }
 
+  // Construct the dynamic link based on the current URL
+  const viewMoreLink = location.pathname.startsWith("/s")
+    ? "/s/trending"
+    : "/m/trending";
+
   return (
     <Style>
       <div className="trending relative z-2 mt-6">
@@ -109,7 +117,7 @@ export default function Trending({ title, serverApiUrl }) {
                 <div className="trendingBtn flex align-item justifyBetween">
                   <div className="titleBox flex gap-3 alignCenter">
                     <h2 className="title">{title}</h2>
-                    <Link to="/m/trending" className="viewMore flex gap-1">
+                    <Link to={viewMoreLink} className="viewMore flex gap-1">
                       <span className="textViewMore">View More</span>
                       <span className="icon">
                         <FontAwesomeIcon icon={faAngleRight} />
@@ -134,7 +142,9 @@ export default function Trending({ title, serverApiUrl }) {
                   </div>
                 </div>
               )}
-              <ul className="list flex mt-4">{renderTrending()}</ul>
+              <ul className="list flex mt-4 justifyBetween">
+                {renderTrending()}
+              </ul>
             </div>
           )}
         </div>

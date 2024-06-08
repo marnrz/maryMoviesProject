@@ -1,5 +1,6 @@
 import { useLocation, useParams } from "react-router-dom";
 import MovieItems from "../../Components/AllMovies/AllMovieItems/MovieItems";
+import SeriesItems from "../../Components/AllMovies/AllMovieItems/SeriesItems"; // New import for TV series
 import Trending from "../../Components/AllMovies/AllMovieItems/Trending";
 import UpComing from "../../Components/AllMovies/AllMovieItems/UpComing";
 import Layout from "../../Components/Layouts";
@@ -51,7 +52,7 @@ const config = {
   ],
   "/s": [
     {
-      component: MovieItems,
+      component: SeriesItems,
       props: { title: "All TvShows", serverApiUrl: "discover/tv" },
     },
     {
@@ -65,7 +66,7 @@ const config = {
   ],
 };
 
-export default function MovieList() {
+export default function SeriesList() {
   const location = useLocation();
   const components = config[location.pathname] || [];
 

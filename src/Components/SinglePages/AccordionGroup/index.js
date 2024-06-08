@@ -1,4 +1,4 @@
-import { Collapse, Space, Spin } from "antd";
+import { Collapse, Space, Spin, Image } from "antd";
 import api from "../../../Utils/Api/api";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -70,21 +70,27 @@ export default function Accordion() {
 
   function renderImages() {
     return (
-      <ul className="imageList flex gap-2">
-        {images.map((image, index) => (
-          <li key={index}>
-            <div className="poster">
-              {" "}
-              <img
-                src={`${ImageBasic.wUrl}${image.file_path}`}
-                alt={`Backdrop ${index + 1}`}
-              />
-            </div>
-          </li>
-        ))}
-      </ul>
+      <Image.PreviewGroup>
+        <ul className="imageList flex wrap gap-2">
+          {images.map((image, index) => (
+            <li key={index}>
+              <div className="poster">
+                <Image
+                  src={`${ImageBasic.wUrl}${image.file_path}`}
+                  alt={`Backdrop ${index + 1}`}
+                  style={{ width: "100%" }} // Adjust the width as needed
+                  preview={{
+                    src: `${ImageBasic.originalUrl}${image.file_path}`,
+                  }} // Original image for Lightbox
+                />
+              </div>
+            </li>
+          ))}
+        </ul>
+      </Image.PreviewGroup>
     );
   }
+
   function renderSimilar() {
     console.log("Similar Movies:", similar);
     if (similar.length === 0) {

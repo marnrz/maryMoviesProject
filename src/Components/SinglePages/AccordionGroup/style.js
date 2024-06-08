@@ -4,8 +4,6 @@ import { colorPallet, defaultCss } from "../../../Theme/commonStyle";
 export const Style = styled.div`
   .accordion {
     width: 100%;
-    height: 90vh;
-    min-height: 400px;
     .accordionWrapper {
       .collaps {
         .ant-space {

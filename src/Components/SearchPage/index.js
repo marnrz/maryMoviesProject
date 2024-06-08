@@ -15,7 +15,7 @@ import Trending from "../AllMovies/AllMovieItems/Trending";
 export default function SearchPage() {
   const [allMoviesData, setAllMoviesData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(20);
+  const [itemsPerPage] = useState(18);
   const [loading, setLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState("");
@@ -99,7 +99,7 @@ export default function SearchPage() {
       const displayDate = release_date || first_air_date;
 
       return (
-        <li className="col-2 relative mb-3" key={id}>
+        <li className="col-2 relative mb-6" key={id}>
           <Link to={`/${media_type === "movie" ? "m" : "s"}/${id}`}>
             {poster_path == null ? (
               <div className="noPic relative">
@@ -151,7 +151,7 @@ export default function SearchPage() {
       <Background />
       <TopBar />
       <div className="hero">
-        <div className="wrapperFull">
+        <div className="wrapper">
           <div className="heroWrapper relative z-2 mt-6">
             <div className="searchBox flex column alignCenter justifyCenter mb-6">
               <h1 className="title mb-5 textCenter">
@@ -187,7 +187,7 @@ export default function SearchPage() {
                         Results for {searchParams.get("query")}
                       </h1>
                     )}
-                  <ul className="resultList flex wrap gap-1">
+                  <ul className="resultList flex wrap">
                     {renderSearchResults()}
                   </ul>
                   <Pagination

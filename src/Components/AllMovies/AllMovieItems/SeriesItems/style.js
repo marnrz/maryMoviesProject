@@ -126,7 +126,7 @@ export const Style = styled.div`
         }
         .infoTitle {
           color: ${colorPallet.darkTextColor};
-          width: 100%;
+          width: 90%;
           height: 100%;
         }
       }

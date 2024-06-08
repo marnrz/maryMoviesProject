@@ -9,8 +9,8 @@ export default function ShowAllMovies({ time_window, name }) {
       {location.pathname === "/all-movies" && (
         <AllMovieList title="All Movies" serverApiUrl="discover/movie" />
       )}
-      {location.pathname === "/m/upcomming" && (
-        <AllMovieList title="Upcomming Movies" serverApiUrl="movie/upcoming" />
+      {location.pathname === "/m/upcoming" && (
+        <AllMovieList title="UpComing Movies" serverApiUrl="movie/upcoming" />
       )}
       {location.pathname === "/m/trending" && (
         <AllMovieList

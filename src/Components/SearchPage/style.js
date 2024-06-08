@@ -65,6 +65,7 @@ export const Style = styled.div`
               border: 2px solid ${colorPallet.primaryColor};
               border-radius: ${defaultCss.primaryBorderRadius};
               background-color: rgba(255, 255, 255, 0.8);
+              margin: auto;
               .iconPlace {
                 top: 50%;
                 left: 50%;
@@ -76,6 +77,7 @@ export const Style = styled.div`
               }
             }
             .poster {
+              margin: auto;
               &::before {
                 position: absolute;
                 width: 100%;

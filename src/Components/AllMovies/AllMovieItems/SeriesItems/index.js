@@ -1,52 +1,67 @@
 import { useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCameraRetro, faCirclePlay } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
 import Style from "./style";
+import { Link, useParams, useLocation } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faAngleRight,
+  faCameraRetro,
+  faCirclePlay,
+} from "@fortawesome/free-solid-svg-icons";
 import ImageBasic from "../../../../Utils/ImageBase/imageBase";
+import renderRateColor from "../../../../Utils/CollorRating";
 import DateChanger from "../../../../Utils/DateChanger/date";
 import api from "../../../../Utils/Api/api";
-import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
-import renderMovieGenres from "../../../../Utils/Genres/genres";
 
-export default function UpComming({ title, serverApiUrl }) {
-  const [moviesData, setMoviesData] = useState([]);
+export default function MovieItems({ title, serverApiUrl, genreId }) {
+  const { id } = useParams();
+  const location = useLocation();
+  const [moviesDataItem, setMoviesDataItem] = useState([]);
   const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    getUpCommingApi();
-  }, []);
 
-  async function getUpCommingApi() {
+  useEffect(() => {
+    getMovieApi();
+  }, [id, serverApiUrl, genreId]);
+
+  async function getMovieApi(page = 1) {
     try {
       setLoading(true);
       const response = await api.get(serverApiUrl, {
         params: {
-          language: "en - US",
-          page: "2",
+          language: "en-US",
+          page: page,
+          with_genres: genreId || id, // Use genreId if provided, otherwise use id
         },
       });
-      setMoviesData(response.data.results.slice(0, 4));
       console.log(response);
+      setMoviesDataItem(response.data.results.slice(0, 6));
       setLoading(false);
     } catch (e) {
+      console.log("Error fetching data:", e);
       setLoading(false);
     }
   }
-  function renderUpCommingMovie() {
-    if (moviesData === null || moviesData === undefined) return "";
-    return moviesData.map(
+
+  function renderMovieItems() {
+    if (!moviesDataItem) return null;
+    return moviesDataItem.map(
       ({
         id,
         poster_path,
         title,
-        release_date,
         name,
+        release_date,
+        vote_average,
         first_air_date,
-        genre_ids,
       }) => {
+        const basePath = location.pathname.startsWith("/genres")
+          ? serverApiUrl.includes("movie")
+            ? "/m"
+            : "/s"
+          : location.pathname;
+
         return (
-          <li className="col-2 relative" key={id}>
-            <Link to={`/m/${id}`}>
+          <li className="col-2 relative mb-4" key={id}>
+            <Link to={`${basePath}/${id}`}>
               {poster_path == null ? (
                 <div className="noPic relative">
                   <span className="iconPlace absolute">
@@ -65,19 +80,9 @@ export default function UpComming({ title, serverApiUrl }) {
                 </div>
               )}
               <div className="infoTitle">
-                <h3 className="mt-4 mb-1">{title || name}</h3>
-                <p className="mb-1">
+                <h3 className="mt-3 mb-2">{title || name}</h3>
+                <p>
                   <DateChanger dateString={release_date || first_air_date} />
-                </p>
-                <p className="flex">
-                  {renderMovieGenres(genre_ids).map((genre, index) => (
-                    <span
-                      key={index}
-                      className="flex justifyBetween alignCenter"
-                    >
-                      {genre} {index < genre_ids.length - 1 && ", "}
-                    </span>
-                  ))}
                 </p>
               </div>
             </Link>
@@ -86,19 +91,24 @@ export default function UpComming({ title, serverApiUrl }) {
       }
     );
   }
+
   return (
     <Style>
-      <div className="upComming relative z-2 mt-6">
+      <div className="movieItem relative z-2 mt-6">
         <div className="wrapper">
           {loading ? (
             <div className="spinner"></div>
           ) : (
-            <div className="upCommingWrapper ">
+            <div className="movieItemWrapper">
               <div className="titleBox flex gap-3 alignCenter">
-                <h2 className="title ">{title}</h2>
+                <h2 className="title">{title}</h2>
                 <Link
-                  to="/m/upcomming"
-                  className="viewMore flex alignCenter gap-1"
+                  to={
+                    serverApiUrl.includes("movie")
+                      ? "/all-movies"
+                      : "/all-series"
+                  }
+                  className="viewMore flex gap-1"
                 >
                   <span className="textViewMore">View More</span>
                   <span className="icon">
@@ -106,7 +116,9 @@ export default function UpComming({ title, serverApiUrl }) {
                   </span>
                 </Link>
               </div>
-              <ul className="list flex mt-4">{renderUpCommingMovie()}</ul>
+              <ul className="list flex wrap mt-4 justifyBetween">
+                {renderMovieItems()}
+              </ul>
             </div>
           )}
         </div>
