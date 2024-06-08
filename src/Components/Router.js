@@ -56,6 +56,10 @@ export default function Router() {
       element: <ShowAllMovies time_window="day" />,
     },
     {
+      path: "/m/:id",
+      element: <SingleMovie />,
+    },
+    {
       path: "/genres/:name",
       element: <ShowAllMovies />,
     },
@@ -63,10 +67,7 @@ export default function Router() {
       path: "/search",
       element: <Search />,
     },
-    {
-      path: "/m/:id",
-      element: <SingleMovie />,
-    },
+
     {
       path: "*",
       element: <Error404 />,

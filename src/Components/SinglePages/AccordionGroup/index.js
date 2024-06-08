@@ -47,20 +47,22 @@ export default function Accordion() {
       return <p>No cast information available.</p>;
     }
     return (
-      <ul className="list flex wrap gap-2">
+      <ul className="list flex gap-2">
         {casts.map(({ name, profile_path, character }, index) => (
-          <li key={index}>
-            <div className="poster">
-              <img
-                src={`${ImageBasic.wUrl}${profile_path}`}
-                alt={`Backdrop ${index + 1}`}
-              />
-            </div>
-            <div className="info">
-              <h4>{name}</h4>
-              <h5>{character}</h5>
-            </div>
-          </li>
+          <Link to="#">
+            <li key={index}>
+              <div className="poster">
+                <img
+                  src={`${ImageBasic.wUrl}${profile_path}`}
+                  alt={`Backdrop ${index + 1}`}
+                />
+              </div>
+              <div className="info">
+                <h4>{name}</h4>
+                <h5>{character}</h5>
+              </div>
+            </li>
+          </Link>
         ))}{" "}
       </ul>
     );
@@ -68,7 +70,7 @@ export default function Accordion() {
 
   function renderImages() {
     return (
-      <ul className="imageList flex wrap gap-2">
+      <ul className="imageList flex gap-2">
         {images.map((image, index) => (
           <li key={index}>
             <div className="poster">
@@ -89,9 +91,9 @@ export default function Accordion() {
       return <p>No similar movies available.</p>;
     }
     return (
-      <ul className="list flex wrap gap-2">
+      <ul className="list flex gap-2">
         {similar.map(({ id: movieId, title, poster_path, name }, index) => (
-          <Link className="link" to="#">
+          <Link to="#">
             <li key={movieId}>
               <div className="poster">
                 <img
@@ -121,7 +123,7 @@ export default function Accordion() {
               {
                 key: "1",
                 label: <h2>Casts</h2>,
-                children: renderCasts(),
+                children: <Spin spinning={loading}>{renderCasts()}</Spin>,
               },
             ]}
           />
@@ -131,7 +133,7 @@ export default function Accordion() {
               {
                 key: "1",
                 label: <h2>Images</h2>,
-                children: renderImages(),
+                children: <Spin spinning={loading}>{renderImages()}</Spin>,
               },
             ]}
           />
@@ -142,7 +144,7 @@ export default function Accordion() {
               {
                 key: "1",
                 label: <h2>Similars</h2>,
-                children: renderSimilar(),
+                children: <Spin spinning={loading}>{renderSimilar()}</Spin>,
               },
             ]}
           />

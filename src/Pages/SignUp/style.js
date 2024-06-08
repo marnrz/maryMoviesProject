@@ -43,7 +43,7 @@ export const Style = styled.div`
         border-radius: ${defaultCss.primaryBorderRadius};
       }
       .btn {
-        display: flex;
+        
         justify-content: center;
         gap: 50px;
         button {

@@ -9,7 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import ImageBasic from "../../../../Utils/ImageBase/imageBase";
 import renderRateColor from "../../../../Utils/CollorRating";
-import DateChanger from "../../../../Utils/DateChanger/date";
+import DateChanger, { Year } from "../../../../Utils/DateChanger/date";
 import api from "../../../../Utils/Api/api";
 
 export default function MovieItems({ title, serverApiUrl }) {
@@ -31,7 +31,7 @@ export default function MovieItems({ title, serverApiUrl }) {
         },
       });
       console.log(response);
-      setMoviesDataItem(response.data.results.slice(0, 6));
+      setMoviesDataItem(response.data.results.slice(0, 12));
       setLoading(false);
     } catch (e) {
       console.log("Error fetching movies:", e);
@@ -53,8 +53,8 @@ export default function MovieItems({ title, serverApiUrl }) {
       }) => {
         // const link = title ? `/m/${id}` : `/s/${id}`;
         return (
-          <li className=" col-2 relative" key={id}>
-            <Link to={`m/${id}`}>
+          <li className=" col-2 relative mb-4" key={id}>
+            <Link to={`${id}`}>
               {poster_path == null ? (
                 <div className="noPic relative">
                   <span className="iconPlace absolute">
@@ -64,22 +64,17 @@ export default function MovieItems({ title, serverApiUrl }) {
               ) : (
                 <div className="poster relative">
                   <img src={`${ImageBasic.wUrl}${poster_path}`} alt={title} />
-                  <strong
-                    className={`voteColor ${renderRateColor(
-                      vote_average
-                    )} absolute`}
-                  >
-                    {vote_average.toFixed(1) * 10}%
-                  </strong>
                   <span className="icon absolute">
                     <FontAwesomeIcon className="playIcon" icon={faCirclePlay} />
                   </span>
                 </div>
               )}
-              <h2 className="mt-4 mb-1">{title || name}</h2>
-              <p>
-                <DateChanger dateString={release_date || first_air_date} />
-              </p>
+              <div className="infoTitle ">
+                <h3 className="mt-3 mb-2">{title || name}</h3>
+                <p>
+                  <DateChanger dateString={release_date || first_air_date} />
+                </p>
+              </div>
             </Link>
           </li>
         );
@@ -105,7 +100,7 @@ export default function MovieItems({ title, serverApiUrl }) {
                 </Link>
               </div>
 
-              <ul className="list flex  mt-4">{renderMovieItems()}</ul>
+              <ul className="list flex wrap  mt-4">{renderMovieItems()}</ul>
 
               {/* {App()} */}
             </div>
@@ -114,4 +109,35 @@ export default function MovieItems({ title, serverApiUrl }) {
       </div>
     </Style>
   );
+}
+{
+  /* <li className=" col-2 relative" key={id}>
+<Link to={`${id}`}>
+  {poster_path == null ? (
+    <div className="noPic relative">
+      <span className="iconPlace absolute">
+        <FontAwesomeIcon className="icon" icon={faCameraRetro} />
+      </span>
+    </div>
+  ) : (
+    <div className="poster relative">
+      <img src={`${ImageBasic.wUrl}${poster_path}`} alt={title} />
+      <strong
+        className={`voteColor ${renderRateColor(
+          vote_average
+        )} absolute`}
+      >
+        {vote_average.toFixed(1) * 10}%
+      </strong>
+      <span className="icon absolute">
+        <FontAwesomeIcon className="playIcon" icon={faCirclePlay} />
+      </span>
+    </div>
+  )}
+  <h2 className="mt-4 mb-1">{title || name}</h2>
+  <p>
+    <DateChanger dateString={release_date || first_air_date} />
+  </p>
+</Link>
+</li> */
 }

@@ -76,10 +76,12 @@ export default function Trending({ title, serverApiUrl }) {
                 </span>
               </div>
             )}
-            <h2 className="mt-4 mb-1">{title || name}</h2>
-            <p>
-              <DateChanger dateString={release_date || first_air_date} />
-            </p>
+            <div className="infoTitle">
+              <h3 className="mt-4 mb-1">{title || name}</h3>
+              <p>
+                <DateChanger dateString={release_date || first_air_date} />
+              </p>
+            </div>
           </Link>
         </li>
       )

@@ -61,7 +61,7 @@ a {
     padding:0 15px;
 }
 .wrapper {
-    width: 88%;
+    width: 95%;
     padding: 0 15px;
     margin: 0 auto;
     max-width: 1600px;

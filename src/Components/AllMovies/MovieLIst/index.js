@@ -11,7 +11,7 @@ import { colorPallet } from "../../../Theme/commonStyle";
 import Layout from "../../Layouts";
 import { Year } from "../../../Utils/DateChanger/date";
 
-export default function AllMovieList({ title, time }) {
+export default function AllMovieList({ title, time, serverApiUrl }) {
   const { id, name } = useParams();
   const [moviesDataItem, setMoviesDataItem] = useState([]);
   const [totalResult, setTotalResult] = useState(0);
@@ -26,7 +26,7 @@ export default function AllMovieList({ title, time }) {
   async function getMovieApi() {
     try {
       setLoading(true);
-      const response = await api.get(`movie/${id}`, {
+      const response = await api.get(serverApiUrl, {
         params: {
           language: "en-US",
           page: currntPage,
@@ -146,10 +146,10 @@ export default function AllMovieList({ title, time }) {
                   </div>
                 </div>
               )}
-              <h3 className=" name mt-4 mb-1 flex gap-1 justifyCenter textCenter">
+              <h4 className=" name mt-4 mb-1 flex gap-1 justifyCenter textCenter">
                 {itemTitle}
                 <Year dateString={itemDate} />
-              </h3>
+              </h4>
             </Link>
           </li>
         );

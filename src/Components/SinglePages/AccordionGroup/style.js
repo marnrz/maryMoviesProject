@@ -18,19 +18,18 @@ export const Style = styled.div`
             .ant-collapse-content {
               .list {
                 height: 300px;
-
                 li {
                   width: 100%;
                   height: 100%;
                   background-color: ${colorPallet.darkSecondaryBackgroundColor};
                   border-radius: ${defaultCss.primaryBorderRadius};
                   .poster {
-                    height: 210px;
                     width: 100%;
+                    height: 210px;
                     img {
                       border-radius: 10px 10px 0 0;
                       width: 100%;
-                      height: auto;
+                      height: 100%;
                       object-fit: cover;
                     }
                   }

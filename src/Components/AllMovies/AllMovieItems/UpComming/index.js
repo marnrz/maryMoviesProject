@@ -64,17 +64,22 @@ export default function UpComming({ title, serverApiUrl }) {
                   </span>
                 </div>
               )}
-              <h2 className="mt-4 mb-1">{title || name}</h2>
-              <p className="flex">
-                {renderMovieGenres(genre_ids).map((genre, index) => (
-                  <span key={index} className="flex justifyBetween alignCenter">
-                    {genre} {index < genre_ids.length - 1 && ", "}
-                  </span>
-                ))}
-              </p>
-              <p>
-                <DateChanger dateString={release_date || first_air_date} />
-              </p>
+              <div className="infoTitle">
+                <h3 className="mt-4 mb-1">{title || name}</h3>
+                <p className="mb-1">
+                  <DateChanger dateString={release_date || first_air_date} />
+                </p>
+                <p className="flex">
+                  {renderMovieGenres(genre_ids).map((genre, index) => (
+                    <span
+                      key={index}
+                      className="flex justifyBetween alignCenter"
+                    >
+                      {genre} {index < genre_ids.length - 1 && ", "}
+                    </span>
+                  ))}
+                </p>
+              </div>
             </Link>
           </li>
         );

@@ -32,8 +32,8 @@ export const Style = styled.div`
     .list {
       li {
         .noPic {
-          width: 150px;
-          height: 200px;
+          width: 120px;
+          height: 140px;
           border: 1px solid ${colorPallet.primaryColor};
           background-color: rgba(255, 255, 255, 0.8);
           border-radius: ${defaultCss.primaryBorderRadius};
@@ -69,8 +69,8 @@ export const Style = styled.div`
             border: 1px solid ${colorPallet.primaryColor};
             border-radius: ${defaultCss.primaryBorderRadius};
           }
-          width: 150px;
-          height: 200px;
+          width: 160px;
+          height: 140px;
           border: 1px solid #fff;
           border-radius: ${defaultCss.primaryBorderRadius};
 
@@ -78,6 +78,7 @@ export const Style = styled.div`
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: top center;
             border-radius: ${defaultCss.primaryBorderRadius};
           }
           .voteColor {
@@ -118,10 +119,15 @@ export const Style = styled.div`
             }
           }
         }
+        .infoTitle {
+          color: ${colorPallet.darkTextColor};
+          width: 90%;
+          height: 100%;
+        }
       }
     }
     h2,
-    h3,
+    h4,
     p,
     span {
       color: ${colorPallet.darkTextColor};
