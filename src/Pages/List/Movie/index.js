@@ -1,8 +1,9 @@
 import { useLocation, useParams } from "react-router-dom";
-import MovieItems from "../../Components/AllMovies/AllMovieItems/MovieItems";
-import Trending from "../../Components/AllMovies/AllMovieItems/Trending";
-import UpComing from "../../Components/AllMovies/AllMovieItems/UpComing";
-import Layout from "../../Components/Layouts";
+import MovieItems from "../../../Components/AllMovies/AllMovieItems/MovieItems";
+import Trending from "../../../Components/AllMovies/AllMovieItems/Trending";
+import UpComing from "../../../Components/AllMovies/AllMovieItems/UpComing";
+import Layout from "../../../Components/Layouts";
+import { useEffect } from "react";
 
 const config = {
   "/m": [
@@ -49,23 +50,26 @@ const config = {
       props: { title: "History", serverApiUrl: "discover/movie", genreId: 36 },
     },
   ],
-  "/s": [
-    {
-      component: MovieItems,
-      props: { title: "All TvShows", serverApiUrl: "discover/tv" },
-    },
-    {
-      component: Trending,
-      props: { title: "Trending TvShows", serverApiUrl: "trending/tv" },
-    },
-    {
-      component: UpComing,
-      props: { title: "UpComing TvShows", serverApiUrl: "tv/on_the_air" },
-    },
-  ],
+  // "/s": [
+  //   {
+  //     component: MovieItems,
+  //     props: { title: "All TvShows", serverApiUrl: "discover/tv" },
+  //   },
+  //   {
+  //     component: Trending,
+  //     props: { title: "Trending TvShows", serverApiUrl: "trending/tv" },
+  //   },
+  //   {
+  //     component: UpComing,
+  //     props: { title: "UpComing TvShows", serverApiUrl: "tv/on_the_air" },
+  //   },
+  // ],
 };
 
 export default function MovieList() {
+  useEffect(() => {
+    document.title = "Movies";
+  }, []);
   const location = useLocation();
   const components = config[location.pathname] || [];
 

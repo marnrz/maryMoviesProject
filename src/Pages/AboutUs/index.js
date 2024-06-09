@@ -1,9 +1,13 @@
+import { useEffect } from "react";
 import Layout from "../../Components/Layouts";
 import { colorPallet } from "../../Theme/commonStyle";
 import Style from "./style";
 import { Collapse } from "antd";
 
 export default function AboutUs() {
+  useEffect(() => {
+    document.title = "About Us - MaryMovie";
+  }, []);
   const questionItems = [
     {
       key: "1",

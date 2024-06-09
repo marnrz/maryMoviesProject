@@ -3,13 +3,14 @@ import HomePage from "../Pages/homePage";
 import ContactUs from "../Pages/ContactUs";
 import AboutUs from "../Pages/AboutUs";
 import Error404 from "../Pages/Error404";
-import MovieList from "../Pages/MovieList";
-import SeriesList from "../Pages/SeriesList"; // New import
-import SingleMovie from "../Pages/SingleMovie";
+import MovieList from "../Pages/List/Movie";
+import SeriesList from "../Pages/List/Series";
 import ShowAllMovies from "../Pages/ShowAll/Movies";
 import ShowAllSeries from "../Pages/ShowAll/Series"; // New import
 import Search from "./SearchPage";
 import SignUp from "../Pages/SignUp";
+import SingleSeries from "../Pages/Single/SingleSeries";
+import SingleMovie from "../Pages/Single/SingleMovie";
 
 export default function Router() {
   const router = createBrowserRouter([
@@ -77,7 +78,10 @@ export default function Router() {
       path: "/m/:id",
       element: <SingleMovie />,
     },
-
+    {
+      path: "/s/:id",
+      element: <SingleSeries />,
+    },
     {
       path: "/genres/:name",
       element: <ShowAllMovies />,

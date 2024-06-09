@@ -11,6 +11,7 @@ import ImageBasic from "../../Utils/ImageBase/imageBase";
 import renderRateColor from "../../Utils/CollorRating";
 import Style from "./style";
 import Trending from "../AllMovies/AllMovieItems/Trending";
+import debounce from "lodash.debounce";
 
 export default function SearchPage() {
   const [allMoviesData, setAllMoviesData] = useState([]);
@@ -27,6 +28,12 @@ export default function SearchPage() {
       fetchAllMovies(queryParam);
     }
   }, [queryParam]);
+
+  useEffect(() => {
+    document.title = searchQuery
+      ? `Search results for "${searchQuery}" - MaryMovie`
+      : "Search - MaryMovie";
+  }, [searchQuery]);
 
   const fetchAllMovies = async (query) => {
     setLoading(true);
@@ -45,18 +52,20 @@ export default function SearchPage() {
       }
 
       setAllMoviesData(allResults);
-      setLoading(false);
     } catch (error) {
       console.error("Error fetching movies:", error);
+    } finally {
       setLoading(false);
     }
   };
+
+  const debouncedFetchMovies = useCallback(debounce(fetchAllMovies, 300), []);
 
   const handleInputChange = (event) => {
     const value = event.target.value;
     setSearchQuery(value);
     setSearchParams(createSearchParams({ query: value }));
-    fetchAllMovies(value);
+    debouncedFetchMovies(value);
   };
 
   const handleButtonClick = () => {
@@ -128,7 +137,6 @@ export default function SearchPage() {
               </div>
             )}
             <div className="multiTitle textCenter">
-              {" "}
               <h4 className="title mt-4 mb-2">
                 {displayTitle}
                 <Year dateString={displayDate} />
@@ -190,14 +198,16 @@ export default function SearchPage() {
                   <ul className="resultList flex wrap">
                     {renderSearchResults()}
                   </ul>
-                  <Pagination
-                    current={currentPage}
-                    pageSize={itemsPerPage}
-                    total={allMoviesData.length}
-                    showSizeChanger={false}
-                    onChange={handlePageChange}
-                    className="pagination textCenter mt-6"
-                  />
+                  {!loading && allMoviesData.length > 0 && (
+                    <Pagination
+                      current={currentPage}
+                      pageSize={itemsPerPage}
+                      total={allMoviesData.length}
+                      showSizeChanger={false}
+                      onChange={handlePageChange}
+                      className="pagination textCenter mt-6"
+                    />
+                  )}
                 </div>
               )}
             </div>

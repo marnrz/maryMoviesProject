@@ -16,6 +16,7 @@ export const Style = styled.div`
     .text {
       color: ${colorPallet.darkTextColor};
       font-size: 1.5rem;
+      line-height: 1.6;
     }
     .questionList {
       .ant-collapse-item {

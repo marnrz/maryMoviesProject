@@ -2,8 +2,12 @@ import { Link } from "react-router-dom";
 import { Button } from "antd";
 import Header from "../../Components/Layouts/Header";
 import Style from "./style";
+import { useEffect } from "react";
 
 export default function Error404() {
+  useEffect(() => {
+    document.title = "Error 404";
+  }, []);
   return (
     <Style>
       <Header />

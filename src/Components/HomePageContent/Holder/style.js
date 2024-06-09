@@ -5,29 +5,37 @@ export const Style = styled.div`
   .holderSection {
     .holderWrapper {
       .mainBar {
-        width: 75%;
+        width: 70%;
 
         .movieInfo {
           li {
             border-radius: ${defaultCss.primaryBorderRadius};
             background-color: ${colorPallet.darkSecondaryBackgroundColor};
-            margin-top: 25px;
-            padding: 15px;
+            margin-top: 32px;
+            padding: 16px;
+            height: 360px;
+            &:first-child {
+              margin-top: 25px;
+            }
             .coverBox {
               width: 30%;
+              height: 100%;
+              padding: 8px;
               img {
                 border-radius: ${defaultCss.primaryBorderRadius};
-                width: 90%;
-                height: auto;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
               }
             }
             .movieDetails {
               width: 70%;
               color: ${colorPallet.darkTextColor};
               min-height: 200px;
-              height: auto;
-              padding-right: 30px;
-
+              height: 100%;
+              padding-right: 32px;
+              padding-left: 24px;
+              margin-top: 32px;
               .titleContent {
                 .left {
                   width: 75%;
@@ -100,7 +108,7 @@ export const Style = styled.div`
               .overview,
               .genres {
                 font-size: 1.2rem;
-                line-height: 1.5;
+                line-height: 1.7;
               }
             }
           }
@@ -121,31 +129,33 @@ export const Style = styled.div`
             }
             .seriesInfo {
               li {
-                margin-bottom: 60px;
+                margin-bottom: 32px;
                 .coverBox {
-                  width: 190px;
-                  height: 60px;
+                  width: 100%;
+                  height: 160px;
 
                   img {
-                    border-radius: 10px 10px 0 0;
+                    border-radius: 10px;
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
                     object-position: 25% 20%;
                   }
                   .text {
-                    background-color: rgba(255, 255, 255, 0.2);
-                    border-radius: 0 0 10px 10px;
+                    background-color: rgba(39, 31, 31, 0.87);
                     color: #fff;
                     padding: 10px;
                     font-weight: 700;
                     text-align: center;
+                    width: 100%;
+                    position: absolute;
+                    bottom: 0;
                   }
                 }
               }
               li:nth-child(1) {
                 .coverBox {
-                  height: 200px;
+                  height: 400px;
                 }
               }
             }

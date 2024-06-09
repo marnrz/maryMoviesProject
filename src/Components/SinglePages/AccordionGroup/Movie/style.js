@@ -1,9 +1,12 @@
 import styled from "styled-components";
-import { colorPallet, defaultCss } from "../../../Theme/commonStyle";
+import { colorPallet, defaultCss } from "../../../../Theme/commonStyle";
 
 export const Style = styled.div`
   .accordion {
     width: 100%;
+    min-height: 300px;
+    padding: 64px 0;
+
     .accordionWrapper {
       .collaps {
         .ant-space {

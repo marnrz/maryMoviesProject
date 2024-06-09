@@ -22,6 +22,9 @@ export default function AllSeriesList({ title, time, serverApiUrl }) {
   useEffect(() => {
     getSeriesApi(time);
   }, [currntPage, id]);
+  useEffect(() => {
+    document.title = ` Download ${title}`;
+  }, []);
 
   //   Api
   async function getSeriesApi() {

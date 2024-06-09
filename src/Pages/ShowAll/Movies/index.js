@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import AllMovieList from "../../../Components/AllMovies/MovieLIst";
+import { useEffect } from "react";
 
 export default function ShowAllMovies({ time_window, name }) {
   const location = useLocation();

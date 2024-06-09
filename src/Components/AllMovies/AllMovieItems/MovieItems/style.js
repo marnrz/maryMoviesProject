@@ -20,6 +20,7 @@ export const Style = styled.div`
     .titleBox {
       .title {
         font-size: 2rem;
+        color: ${colorPallet.darkTextColor};
       }
       .viewMore {
         font-size: 1.3rem;
@@ -130,12 +131,6 @@ export const Style = styled.div`
           height: 100%;
         }
       }
-    }
-    h2,
-    h4,
-    p,
-    span {
-      color: ${colorPallet.darkTextColor};
     }
   }
 `;

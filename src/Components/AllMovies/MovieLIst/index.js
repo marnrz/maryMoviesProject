@@ -44,42 +44,6 @@ export default function AllMovieList({ title, time, serverApiUrl }) {
     }
   }
 
-  // async function getUpComingApi() {
-  //   try {
-  //     setLoading(true);
-  //     const response = await api.get(serverApiUrl, {
-  //       params: {
-  //         language: "en-US",
-  //         page: currntPage,
-  //       },
-  //     });
-  //     console.log(response);
-  //     setUpComingDataItem(response.data.results.slice(0, 12));
-  //     setLoading(false);
-  //   } catch (e) {
-  //     console.log("Error fetching movies:", e);
-  //     setLoading(false);
-  //   }
-  // }
-
-  // async function getTrendingsApi(time_window) {
-  //   try {
-  //     setLoading(true);
-  //     const response = await api.get(serverApiUrl, {
-  //       params: {
-  //         language: "en-US",
-  //         page: currntPage,
-  //       },
-  //     });
-  //     console.log(response);
-  //     setTrendingsDataItem(response.data.results.slice(0, 12));
-  //     setLoading(false);
-  //   } catch (e) {
-  //     console.log("Error fetching movies:", e);
-  //     setLoading(false);
-  //   }
-  // }
-
   //   Render
 
   function renderMovieItem() {
@@ -102,11 +66,11 @@ export default function AllMovieList({ title, time, serverApiUrl }) {
       }) => {
         const itemTitle = title || name;
         const itemDate = release_date || first_air_date;
-        // const itemLink = title ? `/m/${id}` : `/s/${id}`;
 
         // Determine the base path for the links
         const basePath =
           location.pathname.startsWith("/genres") ||
+          location.pathname.startsWith("/all-movies") ||
           location.pathname.startsWith("/m/trending") ||
           location.pathname.startsWith("/m/upcoming")
             ? "/m"

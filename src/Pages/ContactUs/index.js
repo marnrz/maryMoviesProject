@@ -1,8 +1,12 @@
 import Layout from "../../Components/Layouts";
 import { Button, Flex, Input } from "antd";
 import Style from "./style";
+import { useEffect } from "react";
 
 export default function ContactUs() {
+  useEffect(() => {
+    document.title = "Contact Us - MaryMovie";
+  }, []);
   const inputItems = [
     {
       title: "Where should we direct you?",

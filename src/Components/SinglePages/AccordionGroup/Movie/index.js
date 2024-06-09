@@ -1,17 +1,15 @@
 import { Collapse, Space, Spin, Image } from "antd";
-import api from "../../../Utils/Api/api";
+import api from "../../../../Utils/Api/api";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import ImageBasic from "../../../Utils/ImageBase/imageBase";
+import ImageBasic from "../../../../Utils/ImageBase/imageBase";
 import Style from "./style";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Year } from "../../../Utils/DateChanger/date";
+import { Year } from "../../../../Utils/DateChanger/date";
 
-export default function Accordion() {
+export default function MovieAccordion() {
   const { id } = useParams();
   const [images, setImages] = useState([]);
   const [similar, setSimilar] = useState([]);

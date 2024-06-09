@@ -12,7 +12,7 @@ import renderRateColor from "../../../../Utils/CollorRating";
 import DateChanger from "../../../../Utils/DateChanger/date";
 import api from "../../../../Utils/Api/api";
 
-export default function MovieItems({ title, serverApiUrl, genreId }) {
+export default function SeriesItems({ title, serverApiUrl, genreId }) {
   const { id } = useParams();
   const location = useLocation();
   const [moviesDataItem, setMoviesDataItem] = useState([]);

@@ -156,5 +156,11 @@ export const Style = styled.div`
       }
     }
   }
+  .loadingIndicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh; /* Full viewport height */
+  }
 `;
 export default Style;

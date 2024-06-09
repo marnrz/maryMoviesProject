@@ -10,6 +10,7 @@ export const Style = styled.div`
         background-color: rgba(36, 36, 36, 0.7);
         color: #eb8307;
         padding: 7px 10px;
+        margin: 0 0 32px 32px;
         text-align: center;
         border-radius: ${defaultCss.secondaryBorderRadius};
         display: inline;
@@ -19,7 +20,7 @@ export const Style = styled.div`
       }
       .mySwiper {
         width: 100%;
-        padding-top: 20px;
+        padding-top: 36px;
         padding-bottom: 50px;
         .swiper-button-prev {
           color: ${colorPallet.primaryColor};
@@ -59,16 +60,19 @@ export const Style = styled.div`
               display: block;
               width: 100%;
               height: 100%;
+              object-fit: cover;
+              object-position: center;
             }
             .text {
               left: 0%;
-              top: 90%;
+              top: 85%;
               color: #fff;
               padding: 10px;
               font-weight: 700;
               width: 100%;
-              height: 100%;
+              height: 15%;
               font-size: 1.2rem;
+              background-color: #1b131387;
             }
           }
         }

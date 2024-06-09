@@ -9,48 +9,45 @@ import { renderSingleGenres } from "../../../Utils/Genres/genres";
 import { colorPallet } from "../../../Theme/commonStyle";
 import { Flex, Spin, Typography } from "antd";
 import runTime from "../../../Utils/TimeChanger";
-import renderMAge from "../../../Utils/Age";
+import renderAge from "../../../Utils/Age";
 
-export default function HeroSingleMoviePage() {
+export default function HeroSingleSeriesPage() {
   const { id } = useParams();
-  const [moviesData, setMoviesData] = useState([]);
+  const [seriesData, setSeriesData] = useState([]);
   const [data, setData] = useState([]);
   const [castData, setCastsData] = useState([]);
   const [genresData, setGenresData] = useState([]);
   const [directorData, setDiretorData] = useState([]);
   const [authorData, setAuthorData] = useState([]);
   const [ageData, setAgeData] = useState([]);
-  const [regionData, setRegionData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [overviewExpanded, setOverviewExpanded] = useState(false);
 
   useEffect(() => {
-    getMovieDetailsApi();
-  }, []);
-  useEffect(() => {
-    document.title = `${moviesData.title}`;
+    getSeriesDetailsApi();
   }, []);
 
   useEffect(() => {
-    if (moviesData.title) {
-      document.title = `${moviesData.title} - MaryMovie`;
+    if (seriesData.title) {
+      document.title = "Series - MaryMovie";
     }
-  }, [moviesData]);
+  }, [seriesData]);
 
   useEffect(() => {
     setData(listItem);
   }, [genresData, castData, directorData]);
 
-  async function getMovieDetailsApi() {
+  async function getSeriesDetailsApi() {
     setLoading(true);
     try {
-      const response = await api.get(`movie/${id}`, {
+      const response = await api.get(`tv/${id}`, {
         params: {
           language: "en-US",
-          append_to_response: "credits,release_dates",
+          append_to_response:
+            "original_name,credits,first_air_date,release_dates",
         },
       });
-      setMoviesData(response.data);
+      setSeriesData(response.data);
       setCastsData(response.data.credits.cast.slice(0, 3));
       setDiretorData(
         response.data.credits.crew.filter((member) => member.job === "Director")
@@ -163,7 +160,7 @@ export default function HeroSingleMoviePage() {
         </svg>
       ),
       labItem: "Run time:",
-      renderItem: `${runTime(moviesData.runtime)} `,
+      renderItem: `${runTime(seriesData.runtime)} `,
     },
     {
       icon: (
@@ -183,19 +180,28 @@ export default function HeroSingleMoviePage() {
         </svg>
       ),
       labItem: "Age Rating:",
-      renderItem: renderMAge(ageData),
+      renderItem: renderAge(ageData),
     },
   ];
 
   const {
     backdrop_path,
+    genres,
     imdb_id,
+    first_air_date,
+    overview,
+    original_name,
     poster_path,
+    production_companies,
+    production_countries,
     release_date,
+    runtime,
+    spoken_languages,
+    status,
     title,
     vote_average,
     vote_count,
-  } = moviesData;
+  } = seriesData;
 
   function renderFarm() {
     return data.map(({ id, labItem, renderItem, icon }, index) => {
@@ -233,15 +239,18 @@ export default function HeroSingleMoviePage() {
             <Spin size="large" />
           ) : (
             <div className="heroHolderWrapper relative flex aligncenter justifyBetween">
-              <div className="coverBox mt-8">
-                <img src={`${ImageBasic.wUrl}${poster_path}`} alt={title} />
+              <div className="coverBox">
+                <img
+                  src={`${ImageBasic.wUrl}${poster_path}`}
+                  alt={original_name}
+                />
               </div>
-              <div className="meta mt-8 ">
+              <div className="meta">
                 <div className="headMeta flex justifyBetween wrap  ">
                   <div className="left">
                     <h1 className="title">
-                      {title}
-                      <Year dateString={release_date} />
+                      {original_name} (
+                      <Year dateString={first_air_date} />)
                     </h1>
                   </div>
                   <div className="right">
@@ -275,11 +284,11 @@ export default function HeroSingleMoviePage() {
                   <ul className="list ">{renderFarm()}</ul>
                   <div>
                     <Typography.Paragraph className="plotText ">
-                      {overviewExpanded && moviesData.overview
-                        ? moviesData.overview
+                      {overviewExpanded && seriesData.overview
+                        ? seriesData.overview
                         : `${
-                            moviesData.overview
-                              ? moviesData.overview.substring(0, 200)
+                            seriesData.overview
+                              ? seriesData.overview.substring(0, 200)
                               : ""
                           }...`}
                       <span

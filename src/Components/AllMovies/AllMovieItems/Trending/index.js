@@ -39,7 +39,7 @@ export default function Trending({ title, serverApiUrl }) {
   }
 
   // Construct the dynamic link based on the current URL
-  const viewSinglePage = location.pathname.startsWith("/s") ? "/s/" : "/m/";
+  const viewSinglePage = location.pathname.startsWith("/m") ? "/m/" : "/s/";
 
   function renderTrending() {
     if (!moviesData || moviesData.length === 0)
